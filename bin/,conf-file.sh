@@ -28,5 +28,5 @@ done
 # Open files in vim
 for filname in $*
 do
-    $EDITOR $filename
+    $EDITOR $CONFDIR/$filename
 done
