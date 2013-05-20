@@ -25,7 +25,7 @@ do
             mv ~/.$filename $DIR/backups/
         fi
         # create the link
-        # echo new link ~/.${filename} to ${DIR}/${filename}
+        echo new link ~/.${filename} to ${DIR}/${filename}
         ln -s $DIR/$filename ~/.$filename
     fi
 done
@@ -36,4 +36,4 @@ git submodule update --init
 # source bashrc
 source ~/.bashrc
 
-# to add new submodules use git submodule add [repo] [path to folder]
+# to add new submodules use git submodule add [repo url] [path to folder]
