@@ -9,7 +9,7 @@ set -o vi
 # PATH=$PATH:~/bin  # already set in mint's .profile
 
 # Custom prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[1;33m\]\t \[\033[01;34m\]\W \$\[\033[00m\] '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[01;34m\]\W \$\[\033[00m\] '
 
 # Fortune fun
 # echo; fortune | cowsay; echo
