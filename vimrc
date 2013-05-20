@@ -99,11 +99,11 @@ set matchtime=2
 
 """ Key bindings """
 
-" Bind Ctrl+movement to move between windows
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-h> <c-w>h
-map <c-l> <c-w>l
+" Bind Ctrl+Alt+movement to move between windows
+map <c-A-j> <c-w>j
+map <c-A-k> <c-w>k
+map <c-A-h> <c-w>h
+map <c-A-l> <c-w>l
 
 " Shift + space to exist insert mode
 " imap <c-Space> <Esc>
