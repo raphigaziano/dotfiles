@@ -1,0 +1,3 @@
+- Clone in $HOME
+- `bash .dotfiles/install.sh`
+- profit!
