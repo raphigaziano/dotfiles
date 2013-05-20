@@ -1,6 +1,6 @@
 #! /bin/bash
 DIR=~/.dotfiles
-ignore=( scripts backups install.sh )
+ignore=( bin backups install.sh )
 
 cd $DIR
 for filename in *
@@ -29,6 +29,12 @@ do
         ln -s $DIR/$filename ~/.$filename
     fi
 done
+
+# Visible link to bin folder
+if [ ! -e ~/bin ]
+    echo creating local bin folder
+    ln -s $DIR/bin ~/bin
+fi
 
 # update the submodules
 git submodule update --init
