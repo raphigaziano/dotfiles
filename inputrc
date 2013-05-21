@@ -1,9 +1,12 @@
 $include /etc/inputrc
 
+### General ###
+
 set completion-ignore-case on
 set editing-mode vi
+set completion-prefix-display-length 4
 
-# Incrementally search history
+### Incrementally search history ###
 
 "\e[A": history-search-backward
 "\e[B": history-search-forward
@@ -14,6 +17,8 @@ set editing-mode vi
 "\C-k": history-search-backward
 "\C-h": backward-char
 "\C-l": forward-char
+
+### Misc Shortcuts ###
 
 # Clear screen shortcut
 "\C-n": clear-screen
