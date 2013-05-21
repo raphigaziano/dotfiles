@@ -22,6 +22,3 @@ set completion-prefix-display-length 4
 
 # Clear screen shortcut
 "\C-n": clear-screen
-$if mode=vi
-  "\C-n": clear-screen
-  $endif
