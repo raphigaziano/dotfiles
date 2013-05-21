@@ -15,7 +15,7 @@
 
 USAGE="`basename $0` [-d] <filename>[, <filename>...]"
 CONFDIR=~/.dotfiles
-echo $USAGE; exit
+
 # Check args
 if [ $# -lt 1  ]
 then
