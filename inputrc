@@ -1,0 +1,22 @@
+$include /etc/inputrc
+
+set completion-ignore-case on
+set editing-mode vi
+
+# Incrementally search history
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[C": forward-char
+"\e[D": backward-char
+# with vi-bindings
+"\C-j": history-search-forward
+"\C-k": history-search-backward
+"\C-h": backward-char
+"\C-l": forward-char
+
+# Clear screen shortcut
+"\C-n": clear-screen
+$if mode=vi
+  "\C-n": clear-screen
+  $endif
