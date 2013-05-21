@@ -1,6 +1,6 @@
 #! /bin/bash
 DIR=~/.dotfiles
-ignore=( bin backups install.sh )
+ignore=( README.rst bin backups install.sh )
 
 cd $DIR
 for filename in *
@@ -32,6 +32,7 @@ done
 
 # Visible link to bin folder
 if [ ! -e ~/bin ]
+then
     echo creating local bin folder
     ln -s $DIR/bin ~/bin
 fi
