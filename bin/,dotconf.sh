@@ -13,7 +13,7 @@
 # Created: 05-20-2013
 #####################################################
 
-USAGE=",conf-dir <filename>[, <filename>...]"
+USAGE=",dotconf [-d] <filename>[, <filename>...]"
 CONFDIR=~/.dotfiles
 
 # Check args
