@@ -8,6 +8,10 @@
 "
 " """"""""""""""""""""""""""""""""""
 
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages available in Debian.
+runtime! debian.vim
+
 " Load pathogen modules.
 " Keep this at the top of the file.
 call pathogen#infect()
@@ -19,10 +23,6 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 """ General Options """
-
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
-runtime! debian.vim
 
 " *always* use unicode
 set encoding=utf-8 fileencoding=
