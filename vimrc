@@ -8,14 +8,10 @@
 "
 " """"""""""""""""""""""""""""""""""
 
-" Load pathogen.
+" Load pathogen modules.
 " Keep this at the top of the file.
-runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
-
-" To update plugins:
-" git submodule init
-" git submodule update
+call pathogen#helptags()
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
