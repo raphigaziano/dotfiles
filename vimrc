@@ -13,7 +13,7 @@
 runtime! debian.vim
 
 " Load pathogen modules.
-" Keep this at the top of the file.
+" Keep this at the top of the file, right after runtime! debian.vim
 call pathogen#infect()
 call pathogen#helptags()
 
