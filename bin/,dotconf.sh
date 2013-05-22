@@ -16,6 +16,8 @@
 USAGE="`basename $0` [-d] <filename>[, <filename>...]"
 CONFDIR=~/.dotfiles
 
+### TODO: Better arg checking ###
+
 # Check args
 if [ $# -lt 1  ]
 then
@@ -37,8 +39,8 @@ do
         echo "create $path"
         if [ -z $diropt ]; then     # Regular file
             touch $path
-        else
-            mkdir $path             # Directory
+        else                        # Directory
+            mkdir $path             
         fi
         echo "new link ~/.${filename} -> ${path}"
         ln -s $path ~/.$filename
