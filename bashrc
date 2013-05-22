@@ -3,11 +3,11 @@ set -o vi
 
 ### ENV VARS ###
 
-EDITOR=vim
-PATH=$PATH:~/bin  
+export EDITOR=vim
+export PATH=$PATH:~/bin  
 
-GITHUBHOME=https://github.com/raphigaziano  # Git Home
-DEVDIR=~/dev                                # Dev dir
+export GITHUBHOME=https://github.com/raphigaziano  # Git Home
+export DEVDIR=~/dev                                # Dev dir
 
 # Custom prompt
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[01;34m\]\W \$\[\033[00m\] '
@@ -32,20 +32,20 @@ extract () {
     if [ -f $1 ]
     then
         case $1 in
-            (*.7z) 7z x $1 ;;
-            (*.lzma) unlzma $1 ;;
-            (*.rar) unrar x $1 ;;
-            (*.tar) tar xvf $1 ;;
+            (*.7z)      7z x $1 ;;
+            (*.lzma)    unlzma $1 ;;
+            (*.rar)     unrar x $1 ;;
+            (*.tar)     tar xvf $1 ;;
             (*.tar.bz2) tar xvjf $1 ;;
-            (*.bz2) bunzip2 $1 ;;
-            (*.tar.gz) tar xvzf $1 ;;
-            (*.gz) gunzip $1 ;;
-            (*.tar.xz) tar Jxvf $1 ;;
-            (*.xz) xz -d $1 ;;
-            (*.tbz2) tar xvjf $1 ;;
-            (*.tgz) tar xvzf $1 ;;
-            (*.zip) unzip $1 ;;
-            (*.Z) uncompress ;;
+            (*.bz2)     bunzip2 $1 ;;
+            (*.tar.gz)  tar xvzf $1 ;;
+            (*.gz)      gunzip $1 ;;
+            (*.tar.xz)  tar Jxvf $1 ;;
+            (*.xz)      xz -d $1 ;;
+            (*.tbz2)    tar xvjf $1 ;;
+            (*.tgz)     tar xvzf $1 ;;
+            (*.zip)     unzip $1 ;;
+            (*.Z)       uncompress ;;
             (*) echo "don't know how to extract '$1'..." ;;
         esac
     else
