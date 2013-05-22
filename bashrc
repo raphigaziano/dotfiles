@@ -1,5 +1,17 @@
+# bashrc
+#
+# Shell settings & utilis
+#
+# raphigaziano <r.gaziano@gmail.com>
+####################################
+
+### General ###
+
 # Set VIM Mode
 set -o vi
+
+# Custom prompt
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[01;34m\]\W \$\[\033[00m\] '
 
 ### ENV VARS ###
 
@@ -9,23 +21,7 @@ export PATH=$PATH:~/bin
 export GITHUBHOME=https://github.com/raphigaziano  # Git Home
 export DEVDIR=~/dev                                # Dev dir
 
-# Custom prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[01;34m\]\W \$\[\033[00m\] '
-
-# Fun crap \o/
-
-function rcowsay() {
-    cowsay_dir=/usr/share/cowsay/cows
-    # Pick a random cowsay file
-    cowsay_file=$(ls $cowsay_dir | sort -R | tail -1)
-    cowsay -f $cowsay_file $*
-    echo
-}
-function cow_fortune {
-    fortune | rcowsay
-}
-
-# Utils, shortcuts
+### Utils, shortcuts ###
 
 # From http://sametmax.com/a-linterieur-de-mon-bashrc/
 extract () {
@@ -60,7 +56,20 @@ function project {
     cd $DEVDIR/$1
 }
 
-# Aliases
+# Fun crap \o/
+
+function rcowsay() {
+    cowsay_dir=/usr/share/cowsay/cows
+    # Pick a random cowsay file
+    cowsay_file=$(ls $cowsay_dir | sort -R | tail -1)
+    cowsay -f $cowsay_file $*
+    echo
+}
+function cow_fortune {
+    fortune | rcowsay
+}
+
+### Aliases ###
 
 alias cd..="cd .."
 alias cd...="cd ../.."
@@ -76,5 +85,7 @@ function mkdircd () {
 
 # Run a simple http server in cwd
 alias serve="python -m SimpleHTTPServer"
+
+### Startup ###
 
 cow_fortune
