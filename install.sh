@@ -1,8 +1,15 @@
 #! /bin/bash
 DIR=~/.dotfiles
-ignore=( README.rst bin backups install.sh )
+ignore=(
+    README.rst
+    scripts
+    bin
+    backups
+    install.sh
+)
 
 cd $DIR
+
 for filename in *
 do
     # check if the file should be ignored
