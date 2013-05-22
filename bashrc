@@ -14,8 +14,14 @@ GITHOME=https://github.com/raphigaziano
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[01;34m\]\W \$\[\033[00m\] '
 
 # Fortune fun
-# echo; fortune | cowsay; echo
-fortune; echo
+function cow_fortune {
+    cowsay_dir=/usr/share/cowsay/cows
+    # Pick a random cowsay file
+    cowsay_file=$(ls $cowsay_dir | sort -R | tail -1)
+    fortune | cowsay -f $cowsay_file
+    echo
+}
+cow_fortune
 
 # Aliases
 
@@ -30,3 +36,6 @@ alias ll="ls -lh"
 function mkdircd () {
     mkdir -p "$@" && eval cd "\"\$$#\"";
 }
+
+# Run a simple http server in cwd
+alias serve="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
