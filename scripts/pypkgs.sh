@@ -17,7 +17,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-CONFIR=~/.dotfiles
+CONFDIR=~/.dotfiles
 BURRITOURL=https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh
 
 # First get virtualenv & virtualenvwrapper, 

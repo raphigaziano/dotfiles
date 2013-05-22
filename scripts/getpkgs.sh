@@ -1,4 +1,4 @@
-# ! /bin/bash
+#! /bin/bash
 #
 # Automagically install the listed packages.
 # Update the package list below accordingly.
@@ -12,7 +12,7 @@
 
 packages=(
     tmux
-    tree 
+    tree
     python-pip
 )
 
