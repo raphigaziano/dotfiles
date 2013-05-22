@@ -7,6 +7,8 @@ set -o vi
 # Add $HOME/bin to $PATH
 # (Apparently a bad idea to do so here, but i'll bother with this later)
 PATH=$PATH:~/bin  # already set in mint's .profile
+# Git Home
+GITHOME=https://github.com/raphigaziano
 
 # Custom prompt
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[01;34m\]\W \$\[\033[00m\] '
