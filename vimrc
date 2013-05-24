@@ -88,7 +88,6 @@ set mouse=a	        	" Enable mouse usage (all modes)
 """ Text Formatting """
 
 set autoindent          " Activate autoindent
-stoopid
 set formatoptions=croq  " Not sur what this is for ?
 set colorcolumn=80      " Show 80th columen
 set smartindent         " Indentation
