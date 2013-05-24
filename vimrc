@@ -125,6 +125,9 @@ vnoremap > >gv
 nmap <F3> a<C-R>=strftime("%Y-%m-%d %a %H:%M")<CR><Esc>
 imap <F3> <C-R>=strftime("%Y-%m-%d %a %H:%M")<CR>
 
+" In Visual mode, map Enter key to the EasyAlign command
+vnoremap <silent> <Enter> :EasyAlign<cr>
+
 """ Windows settings """
 """ ( Boo, I know  ) """
 
