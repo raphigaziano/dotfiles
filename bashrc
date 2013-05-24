@@ -88,4 +88,8 @@ alias serve="python -m SimpleHTTPServer"
 
 ### Startup ###
 
+# virtualenvwrapper activation
+export WORKON_HOME=$HOME/.virtualenvs
+source $HOME/.venvburrito/startup.sh
+
 cow_fortune
