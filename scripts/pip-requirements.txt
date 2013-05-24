@@ -1,4 +1,6 @@
 Django
 ipython
+ipdb
 nose
 pylint
+grin
