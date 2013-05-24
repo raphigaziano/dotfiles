@@ -7,3 +7,6 @@
 [submodule "vim/bundle/taglist"]
 	path = vim/bundle/taglist
 	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule "vim/bundle/easy-align"]
+	path = vim/bundle/easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
