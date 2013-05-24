@@ -52,6 +52,19 @@ syntax on
 set background=dark     " If using a dark background within the 
                         " editing area and syntax highlighting turn 
                         " on this option as well
+
+" Status line
+set laststatus=2                                
+set statusline=                                 
+set statusline+=%-3.3n\                         " buffer number
+set statusline+=%f\                             " filename
+set statusline+=%h%m%r%w                        " status flags
+set statusline+=\[%{strlen(&ft)?&ft:'none'}]    " file type
+set statusline+=%=                              " right align remainder
+set statusline+=0x%-8B                          " character value
+set statusline+=%-14(%l,%c%V%)                  " line, character
+set statusline+=%<%P                            " file position
+
 set cursorline          " Highlight current line
 set ruler               " Cursor position
 set title               " ???
@@ -95,7 +108,7 @@ set matchtime=2
 
 """ Key bindings """
 
-" Bind Ctrl+Alt+movement to move between windows
+" Bind Ctrl+movement to move between windows
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-h> <c-w>h
