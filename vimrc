@@ -121,12 +121,16 @@ map <c-l> <c-w>l
 vnoremap < <gv
 vnoremap > >gv
 
-" To insert timestamp, press F3.
-nmap <F3> a<C-R>=strftime("%Y-%m-%d %a %H:%M")<CR><Esc>
-imap <F3> <C-R>=strftime("%Y-%m-%d %a %H:%M")<CR>
-
 " In Visual mode, map Enter key to the EasyAlign command
 vnoremap <silent> <Enter> :EasyAlign<cr>
+
+" To insert timestamp, press F5.
+" TODO: Find some better mapping
+nmap <F5> a<C-R>=strftime("%Y-%m-%d %a %H:%M")<CR><Esc>
+imap <F5> <C-R>=strftime("%Y-%m-%d %a %H:%M")<CR>
+
+map <F2> :NERDTreeToggle<cr>
+map <F3> :TlistToggle<cr>
 
 """ Windows settings """
 """ ( Boo, I know  ) """
@@ -142,6 +146,8 @@ if has("win32")
     endif
 endif
 
+
 """ Plugin Options """
 
-" Nothing yet
+" Focus Tag windows on opening
+let Tlist_GainFocus_On_ToggleOpen = 1
