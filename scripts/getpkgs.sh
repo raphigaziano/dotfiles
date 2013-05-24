@@ -14,6 +14,7 @@ packages=(
     tmux
     tree
     python-pip
+    exuberant-ctags
 )
 
 # Check if user is root
