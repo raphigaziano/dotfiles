@@ -121,6 +121,10 @@ map <c-l> <c-w>l
 vnoremap < <gv
 vnoremap > >gv
 
+" To insert timestamp, press F3.
+nmap <F3> a<C-R>=strftime("%Y-%m-%d %a %H:%M")<CR><Esc>
+imap <F3> <C-R>=strftime("%Y-%m-%d %a %H:%M")<CR>
+
 """ Windows settings """
 """ ( Boo, I know  ) """
 
