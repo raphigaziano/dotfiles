@@ -56,8 +56,9 @@ extract () {
 
 # Syntax higlighted less
 function cless {
-    #TODO: Check if pygmentize can parse the file and
-    #      call less normally if not
+    # TODO: Check if pygmentize can parse the file and
+    #       call less normally if not.
+    # NOTE: Requires pygments.
     pygmentize -f terminal "$@" | less -R
 }
 
