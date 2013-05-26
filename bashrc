@@ -21,6 +21,10 @@ export PATH=$PATH:~/bin
 export GITHUBHOME=https://github.com/raphigaziano  # Git Home
 export DEVDIR=~/dev                                # Dev dir
 
+# virtualenvwrapper activation
+export WORKON_HOME=$HOME/.virtualenvs
+source $HOME/.venvburrito/startup.sh
+
 ### Utils, shortcuts ###
 
 # From http://sametmax.com/a-linterieur-de-mon-bashrc/
@@ -50,6 +54,13 @@ extract () {
     fi
 }
 
+# Syntax higlighted less
+function cless {
+    #TODO: Check if pygmentize can parse the file and
+    #      call less normally if not
+    pygmentize -f terminal "$@" | less -R
+}
+
 # Cd into project dir and activate its virtualenv
 function project {
     workon $1
@@ -71,11 +82,11 @@ function cow_fortune {
 
 ### Aliases ###
 
-alias cd..="cd .."
-alias cd...="cd ../.."
-alias cd....="cd ../../.."
-alias cd.....="cd ../../../.."
-alias cd......="cd ../../../../.."
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 
 alias ll="ls -lh"
 
@@ -87,9 +98,5 @@ function mkdircd () {
 alias serve="python -m SimpleHTTPServer"
 
 ### Startup ###
-
-# virtualenvwrapper activation
-export WORKON_HOME=$HOME/.virtualenvs
-source $HOME/.venvburrito/startup.sh
 
 cow_fortune
