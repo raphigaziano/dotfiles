@@ -60,6 +60,22 @@ function cless {
     pygmentize -f terminal "$@" | less -R
 }
 
+# Check gmail for new mails
+# from http://www.catonmat.net/blog/yet-another-ten-one-liners-from-commandlinefu-explained/
+function checkgmail {
+    curl -u r.gaziano@gmail.com --silent "https://mail.google.com/mail/feed/atom" |
+    perl -ne \
+    '
+        print "Subject: $1 " if /<title>(.+?)<\/title>/ && $title++;
+        print "(from $1)\n"  if /<email>(.+?)<\/email>/;
+    '
+}
+
+# mkdir and cd into into it
+function cdmkdir () {
+    mkdir -p "$@" && eval cd "\"\$$#\"";
+}
+
 # Cd into project dir and activate its virtualenv
 function project {
     workon $1
@@ -105,10 +121,6 @@ alias gpu='git pull'
 alias gcl='git clone'
 
 alias ll="ls -lh"
-
-function cdmkdir () {
-    mkdir -p "$@" && eval cd "\"\$$#\"";
-}
 
 # Run a simple http server in cwd
 alias serve="python -m SimpleHTTPServer"
