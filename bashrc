@@ -106,7 +106,7 @@ alias gcl='git clone'
 
 alias ll="ls -lh"
 
-function mkdircd () {
+function cdmkdir () {
     mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 
