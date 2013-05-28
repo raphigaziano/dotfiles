@@ -115,7 +115,7 @@ map <c-h> <c-w>h
 map <c-l> <c-w>l
 
 " Shift + space to exist insert mode
-" imap <c-Space> <Esc>
+inoremap <Nul> <C-x><C-o>
 
 " Easier indenting in visual mode (keep block selected)
 vnoremap < <gv
@@ -149,8 +149,10 @@ endif
 
 """ Plugin Options """
 
-" Focus Tag windows on opening
+" Focus Tag window on opening
 let Tlist_GainFocus_On_ToggleOpen = 1
+" Tag window on the right
+let Tlist_Use_Right_Window = 1
 
 """ FileTypes """
 
