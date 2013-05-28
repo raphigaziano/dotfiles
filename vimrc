@@ -151,3 +151,9 @@ endif
 
 " Focus Tag windows on opening
 let Tlist_GainFocus_On_ToggleOpen = 1
+
+""" FileTypes """
+
+""" Python
+
+au FileType python set omnifunc=pythoncomplete#Complete
