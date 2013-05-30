@@ -154,6 +154,12 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 " Tag window on the right
 let Tlist_Use_Right_Window = 1
 
+" CtrlP bindings
+let g:ctrlp_map = '<C-P>'
+let g:ctrlp_cmd = 'CtrlP'
+" CtrlP workind dir
+let g:ctrlp_working_path_mode = 'ra'
+
 """ FileTypes """
 
 """ Python
