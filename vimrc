@@ -22,9 +22,6 @@ if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
-" Automatic reload of .vimrc
-autocmd bufwritepost .vimrc source %
-
 """ General Options """
 
 " *always* use unicode
@@ -117,8 +114,8 @@ map <c-k> <c-w>k
 map <c-h> <c-w>h
 map <c-l> <c-w>l
 
-" Shift + space to exist insert mode
-inoremap <Nul> <C-x><C-o>
+" Use j+k to escape insert mode
+inoremap jk <Esc>
 
 " Easier indenting in visual mode (keep block selected)
 vnoremap < <gv
