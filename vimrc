@@ -22,6 +22,9 @@ if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
+" Automatic reload of .vimrc
+autocmd bufwritepost .vimrc source %
+
 """ General Options """
 
 " *always* use unicode
