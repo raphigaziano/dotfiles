@@ -25,6 +25,9 @@ export DEVDIR=~/dev                                # Dev dir
 export WORKON_HOME=$HOME/.virtualenvs
 source $HOME/.venvburrito/startup.sh
 
+# Source personal autocompletion script
+source $HOME/bin/.autocompletions
+
 ### Utils, shortcuts ###
 
 # From http://sametmax.com/a-linterieur-de-mon-bashrc/
