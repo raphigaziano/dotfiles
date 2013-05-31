@@ -26,7 +26,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 source $HOME/.venvburrito/startup.sh
 
 # Source personal autocompletion script
-source $HOME/bin/.autocompletions
+source $HOME/bin/.autocompletions.sh
 
 ### Utils, shortcuts ###
 

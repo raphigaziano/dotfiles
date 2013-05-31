@@ -49,7 +49,7 @@ function __select_files_complete {
     cmd="${COMP_WORDS[COMP_CWORD-1]}"
 
     # Each command reusing the __select_files function should be
-    # liste here as a separate case.
+    # listed here as a separate case.
     case $cmd in
         ",dotconf.sh")
             ignore=(
