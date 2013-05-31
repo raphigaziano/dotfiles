@@ -120,6 +120,35 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 
+# Quickie vim
+
+# Compute filenames based on the passed extension, and call vim with those.
+# This function should not be called manually:
+# Set up an alias for it instead (see below).
+function _vim_filext {
+    # BAD NAME
+    if [[ -z "$2" ]]; then
+        echo "Give me a filename to work with!"
+        return 1
+    fi
+    ext=$1
+    shift
+    res=()
+    for f in $*; do
+        res+=("$f.$ext")
+    done
+    vim ${res[@]}
+}
+
+alias v="vim"
+alias vpy="_vim_filext 'py'"
+alias vhtml="_vim_filext 'html'"
+alias vcss="_vim_filext 'css'"
+alias vjs="_vim_filext 'js'"
+alias vc="_vim_filext 'c'"
+alias vcpp="_vim_filext 'cpp'"
+alias vh="_vim_filext 'h'"
+
 alias ll="ls -lh"
 
 # Run a simple http server in cwd
