@@ -42,35 +42,64 @@ function __select_files {
 }
 
 # Custom file selection completion.
-function __select_files_complete {
-    local cur opts ignore
+# Inspired by apt_get's autocompletion: /etc/bash_completion.d/apt
+function __dotconf_complete {
 
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    cmd="${COMP_WORDS[COMP_CWORD-1]}"
+    local opts cur prev cmd i
+    COMPRREPLY=()
+    opts=(
+        config
+        script
+    )
 
-    # Each command reusing the __select_files function should be
-    # listed here as a separate case.
-    case $cmd in
-        ",dotconf.sh")
-            ignore=(
-                    README.rst
-                    scripts
-                    bin
-                    backups
-                    install.sh
-            )
-            __select_files "$HOME/.dotfiles" ${ignore[@]}
-            ;;
-        *)  # Catch all case.
-            return 1
-            ;;
-    esac
+    _get_comp_words_by_ref cur prev
 
-    opts=$( printf " %s" "${files[@]}" )
-    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    # Try and get the sub command
+    for (( i=0; $i < ${#COMP_WORDS[@]}-1; i++ )); do
+        case "${opts[@]}" 
+            in *"${COMP_WORDS[i]}"*)
+                cmd=${COMP_WORDS[i]}
+                ;;
+        esac
+    done
+
+
+    if [[ -n $cmd ]]; then
+
+        local files
+
+        case $cmd in
+
+            config)
+                ignore=(
+                        README.rst
+                        scripts
+                        bin
+                        backups
+                        install.sh
+                )
+                # TODO: better "return" from __select_files
+                __select_files "$HOME/.dotfiles" ${ignore[@]}
+                ;;
+
+            script)
+                __select_files "$HOME/bin"
+                ;;
+
+            *)  # Catch all case.
+                return 1
+                ;;
+        esac
+
+        COMPREPLY=( $(compgen -W "${files}" -- ${cur}) )
+        return 0
+    fi
+
+    # Subcommand completion
+    local optstring=$( printf "%s " "${opts[@]}")
+    COMPREPLY=( $(compgen -W "${optstring}" -- ${cur}) )
     return 0
-}
-
-complete -F __select_files_complete ,dotconf.sh
+} &&
+complete -F __dotconf_complete ,dotconf.sh
 
 

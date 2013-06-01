@@ -11,27 +11,70 @@
 # Created: 05-20-2013
 #####################################################
 
-USAGE="`basename $0` <filename>[, <filename>...]"
 CONFDIR=~/.dotfiles
 
-# Check args
-if [ $# -lt 1  ]
-then
-    echo "Usage: $USAGE"
+function usage {
+    # TODO: update this & header
+    echo "USAGE=`basename $0` <filename>[, <filename>...]"
     exit 1
+}
+
+# Check args
+if [ $# -lt 2 ]
+then
+    usage
 fi
 
-files=()
-for filename in $*; do
-    files+=("$CONFDIR/$filename")
-done
+# Actual File Editing
+function edit_files {
 
-$EDITOR ${files[@]}
+    local dir files filename
 
-for f in $*; do
-    path=$CONFDIR/$filename
-    if [[ -e $path && ! -e $HOME/.$f ]]; then
-        echo "new link $HOME/.${f} -> ${path}"
-        ln -s $path $HOME/.$f
-    fi
-done
+    dir=$1
+    shift
+
+    files=()
+    for filename in $*; do
+        files+=("$dir/$filename")
+    done
+
+    $EDITOR ${files[@]}
+}
+
+
+cmd=$1
+shift
+
+case $cmd in
+
+    config)
+        edit_files $CONFDIR $*
+        for f in $*; do
+            path=$CONFDIR/$f
+            if [[ -e $path && ! -e $HOME/.$f ]]; then
+                echo "new link $HOME/.$f -> ${path}"
+                ln -s $path $HOME/.$f
+            fi
+        done
+        ;;
+
+    script)
+        edit_files $HOME/bin $*
+        for f in $*; do
+            path=$HOME/bin/$f
+            if [[ -e $path ]]; then
+                chmod +x "$path"
+            fi
+        done
+        ;;
+
+    # Add other locations here as a separate case
+
+    *)  # Catch all case => invalid cmd
+        echo "Invalid command: $cmd"
+        exit 1
+        ;;
+
+esac
+
+exit 0
