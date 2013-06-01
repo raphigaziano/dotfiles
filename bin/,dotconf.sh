@@ -68,13 +68,16 @@ case $cmd in
         done
         ;;
 
+    snippets)
+        edit_files $CONFDIR/vim/snippets $*
+        ;;
+
     # Add other locations here as a separate case
 
     *)  # Catch all case => invalid cmd
         echo "Invalid command: $cmd"
         exit 1
         ;;
-
 esac
 
 exit 0

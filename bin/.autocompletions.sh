@@ -50,6 +50,7 @@ function __dotconf_complete {
     opts=(
         config
         script
+        snippets
     )
 
     _get_comp_words_by_ref cur prev
@@ -62,7 +63,6 @@ function __dotconf_complete {
                 ;;
         esac
     done
-
 
     if [[ -n $cmd ]]; then
 
@@ -84,6 +84,10 @@ function __dotconf_complete {
 
             script)
                 __select_files "$HOME/bin"
+                ;;
+
+            snippets)
+                __select_files "$HOME/.dotfiles/vim/snippets"
                 ;;
 
             *)  # Catch all case.
