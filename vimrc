@@ -105,6 +105,7 @@ set incsearch	    	" Incremental search
 set wildmenu            " completion with menu
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc
 set matchtime=2 
+set wrapscan            " Wrap around the file
 
 """ Key bindings """
 
