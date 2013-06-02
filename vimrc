@@ -85,6 +85,13 @@ set autowrite		    " Automatically save before commands like
                         " :next and :make
 set mouse=a	        	" Enable mouse usage (all modes)
 
+set cpoptions+=$        " Show a dollar sign at the end of the section being
+                        " changed
+set timeoutlen=500
+
+set virtualedit=all
+set hidden              " Allow hiding unsaved buffers
+
 """ Text Formatting """
 
 set autoindent          " Activate autoindent
@@ -114,6 +121,9 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-h> <c-w>h
 map <c-l> <c-w>l
+
+" Ctrl-Space for autocompletion
+inoremap <Nul> <C-x><C-o>
 
 " Use j+k to escape insert mode
 inoremap jk <Esc>
