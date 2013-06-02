@@ -45,6 +45,8 @@ function __select_files {
 # Inspired by apt_get's autocompletion: /etc/bash_completion.d/apt
 function __dotconf_complete {
 
+    # TODO: better "return" from __select_files
+
     local opts cur prev cmd i
     COMPRREPLY=()
     opts=(
@@ -65,11 +67,8 @@ function __dotconf_complete {
     done
 
     if [[ -n $cmd ]]; then
-
         local files
-
         case $cmd in
-
             config)
                 ignore=(
                         README.rst
@@ -78,18 +77,14 @@ function __dotconf_complete {
                         backups
                         install.sh
                 )
-                # TODO: better "return" from __select_files
                 __select_files "$HOME/.dotfiles" ${ignore[@]}
                 ;;
-
             script)
                 __select_files "$HOME/bin"
                 ;;
-
             snippets)
                 __select_files "$HOME/.dotfiles/vim/snippets"
                 ;;
-
             *)  # Catch all case.
                 return 1
                 ;;

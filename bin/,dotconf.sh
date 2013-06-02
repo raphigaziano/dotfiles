@@ -27,7 +27,6 @@ fi
 
 # Actual File Editing
 function edit_files {
-
     local dir files filename
 
     dir=$1
@@ -41,12 +40,10 @@ function edit_files {
     $EDITOR ${files[@]}
 }
 
-
 cmd=$1
 shift
 
 case $cmd in
-
     config)
         edit_files $CONFDIR $*
         for f in $*; do
@@ -57,7 +54,6 @@ case $cmd in
             fi
         done
         ;;
-
     script)
         edit_files $HOME/bin $*
         for f in $*; do
@@ -67,13 +63,10 @@ case $cmd in
             fi
         done
         ;;
-
     snippets)
         edit_files $CONFDIR/vim/snippets $*
         ;;
-
     # Add other locations here as a separate case
-
     *)  # Catch all case => invalid cmd
         echo "Invalid command: $cmd"
         exit 1
