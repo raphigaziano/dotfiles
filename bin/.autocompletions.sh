@@ -28,7 +28,7 @@ function __select_files {
     for f in $dir/*; do
         ignore=false
         for ignoref in $*; do
-            if [[ "$f" == "$dir/$ignoref" ]]; then
+            if [[ "$f" == $dir/$ignoref ]]; then
                 ignore=true
                 break
             fi
@@ -71,16 +71,19 @@ function __dotconf_complete {
         case $cmd in
             config)
                 ignore=(
-                        README.rst
-                        scripts
-                        bin
-                        backups
-                        install.sh
+                    README.rst
+                    scripts
+                    bin
+                    backups
+                    install.sh
                 )
                 __select_files "$HOME/.dotfiles" ${ignore[@]}
                 ;;
             script)
-                __select_files "$HOME/bin"
+                ignore=(
+                    *.pyc
+                )
+                __select_files "$HOME/bin" ${ignore[@]}
                 ;;
             snippets)
                 __select_files "$HOME/.dotfiles/vim/snippets"
