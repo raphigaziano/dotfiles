@@ -107,8 +107,6 @@ def list_feeds(args):
 
 def register_feed(args):
     """ """
-    print(args.user)
-    exit()
     new_feed = {
         'url': args.feedurl,
         'user': args.user
