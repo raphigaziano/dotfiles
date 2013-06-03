@@ -8,7 +8,8 @@ Dependencies:
     - requests
     - feedparser
 
-Will hanlde registering feeds in a future version.
+There's probably a lot of scripts that out there already that can handle
+the job much better, but who cares, reinventing the wheel is fun \o/
 
 author: raphi <r.gaziano@gmail.com>
 created: 2013-06-02
@@ -16,6 +17,8 @@ created: 2013-06-02
 from __future__ import print_function, unicode_literals
 
 import sys
+import os
+import json
 from getpass import getpass
 
 try:
@@ -58,20 +61,26 @@ def print_entries(feed, printer=_default_printer):
     """
     return printer(feed)
 
-### TEMPO
 
-KNOWN_HOSTS = {
-    'sm': "http://sametmax.com/feed/"
-}
+FEEDS_FILE = os.path.join(os.path.dirname(__file__), '.feeds')
+if not os.path.exists(FEEDS_FILE):
+    f = open(FEEDS_FILE, 'w')
+    f.write('{}')
+    f.close()
+    
+with open(FEEDS_FILE, 'r') as f:
+    FEEDS = json.load(f)
 
-###/TEMPO
-
-def main(args):
+def fetch_feed(args):
     """ Script entry point. """
     url     = args.feed
     usrname = args.user
 
-    url = KNOWN_HOSTS.get(url, url) # FIXME: read from file
+    if url in FEEDS:
+        # Keep assignments in that order to avoid using the actual
+        # url as a key
+        usrname = FEEDS[url]['user']
+        url     = FEEDS[url]['url']
 
     if usrname:
         pswd = getpass('Host password for user %s: ' % usrname)
@@ -82,21 +91,64 @@ def main(args):
     print_entries(feed)
 
     return 0
+
+def get_feeds_list():
+    return FEEDS
+
+def list_feeds(args):
+    """ """
+    print(json.dumps(get_feeds_list(),
+                     sort_keys=True,
+                     indent=4, 
+                     separators=(',', ':')
+          )
+    )
+    return 0
+
+def register_feed(args):
+    """ """
+    print(args.user)
+    exit()
+    new_feed = {
+        'url': args.feedurl,
+        'user': args.user
+    }
+    FEEDS[args.feedname] = new_feed
+    with open(FEEDS_FILE, 'w') as f:
+        json.dump(FEEDS, f)
+    return 0
     
 if __name__ == '__main__':
 
     import argparse
-    arg_parser = argparse.ArgumentParser(prog='Feedreadr')
-    arg_parser.add_argument('-u', '--user',  action='store',
+    arg_parser = argparse.ArgumentParser(prog=',feedreadr')
+    subparsers = arg_parser.add_subparsers()
+
+    fetch_parser = subparsers.add_parser('fetch')
+    fetch_parser.add_argument('-u', '--user',  action='store',
             help='User name - for feeds requiring authentication.'
-                 'If provided, you will be prompted or a password. '
+                 'If provided, you will be prompted for a password. '
                  'Leave it blank if this is not needed')
-    arg_parser.add_argument('-l', '--list-feeds',  action='store_true',
-            help='List registered feeds and exit.')
-    # TODO: opt to register feed
-    arg_parser.add_argument('feed', 
+    fetch_parser.add_argument('feed',
             help='feed to parse. Can be either a valid url, or the name of '
                  'a registered feed.')
+    fetch_parser.set_defaults(func=fetch_feed)
+
+    # TODO: MOAR DOC
+    
+    list_parser = subparsers.add_parser('list')
+    # arg_parser.add_argument('-l', '--list-feeds',  action='store_true',
+    #         help='List registered feeds and exit.')
+    list_parser.set_defaults(func=list_feeds)
+    
+    reg_parser  = subparsers.add_parser('register')
+    reg_parser.add_argument('feedname', 
+            help="popo")
+    reg_parser.add_argument('feedurl',
+            help="papa")
+    reg_parser.add_argument('user', nargs='?',
+            help="pupu")
+    reg_parser.set_defaults(func=register_feed)
 
     args = arg_parser.parse_args()
-    sys.exit(main(args))
+    args.func(args)
