@@ -5,6 +5,21 @@
 # Created: 2013-05-31 Fri 08:49
 ##############################################################################
 
+
+# Helper.
+# Get an already typed subcommand.
+#
+# args:
+# $*    => array of accepted subcommands
+function __get_subcmd {
+    for (( i=0; $i < ${#COMP_WORDS[@]}-1; i++ )); do
+        case "$*" in *"${COMP_WORDS[i]}"*)
+                cmd=${COMP_WORDS[i]}
+                ;;
+        esac
+    done
+}
+
 # Helper.
 # This function will scan the directory given as its first parameter,
 # and "return" a list of all contained files, excluding the ones listed in
@@ -56,15 +71,7 @@ function __dotconf_complete {
     )
 
     _get_comp_words_by_ref cur prev
-
-    # Try and get the sub command
-    for (( i=0; $i < ${#COMP_WORDS[@]}-1; i++ )); do
-        case "${opts[@]}" 
-            in *"${COMP_WORDS[i]}"*)
-                cmd=${COMP_WORDS[i]}
-                ;;
-        esac
-    done
+    __get_subcmd ${opts[@]}
 
     if [[ -n $cmd ]]; then
         local files
@@ -123,15 +130,7 @@ function __feedreadr_complete {
     )
 
     _get_comp_words_by_ref cur prev
-
-    # Try and get the sub command
-    for (( i=0; $i < ${#COMP_WORDS[@]}-1; i++ )); do
-        case "${opts[@]}" 
-            in *"${COMP_WORDS[i]}"*)
-                cmd=${COMP_WORDS[i]}
-                ;;
-        esac
-    done
+    __get_subcmd ${opts[@]}
 
     if [[ -n $cmd ]]; then
         case $cmd in
