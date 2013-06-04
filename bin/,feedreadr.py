@@ -12,7 +12,8 @@ Dependencies:
 There's probably a lot of scripts that out there already that can handle
 the job much better, but who cares, reinventing the wheel is fun \o/
 
-Left todo: better error handling, prettier output
+Left todo: better error handling, template arg (with quick processing to
+simplify syntax)
 
 author: raphi <r.gaziano@gmail.com>
 created: 2013-06-02
