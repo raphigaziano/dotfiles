@@ -12,22 +12,13 @@ url or pass it as a command line argument.
 author: raphi <echo $USER>
 created: 2013-06-03 Mon 19:24
 """
+from __future__ import unicode_literals
 from getpass import getpass
 import importlib
 
 feedreadr = importlib.import_module(',feedreadr')
 
 USER = 'r.gaziano@gmail.com'
-
-def gmail_printer(feed):
-    """ Custom printer for mailbox. """
-    print(feed.feed.title)
-    if not feed.entries:
-        print("No new message.")
-    for e in feed.entries:
-        print("Subject: %s\t(from %s)" %
-                (e.title, e.author.replace('(', '<').replace(')', '>'))
-        )
 
 if __name__ == '__main__':
 
@@ -39,4 +30,4 @@ if __name__ == '__main__':
     pswd = getpass('Google mail password: ')
     feed = feedreadr.parse("https://mail.google.com/mail/feed/atom",
                            USER, pswd)
-    feedreadr.print_entries(feed, gmail_printer)
+    feedreadr.print_entries(feed, "Subject: {0.title}\n\t{0.author}")
