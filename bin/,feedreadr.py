@@ -12,7 +12,7 @@ Dependencies:
 There's probably a lot of scripts that out there already that can handle
 the job much better, but who cares, reinventing the wheel is fun \o/
 
-Left todo: better error handling, autocompletion
+Left todo: better error handling, prettier output
 
 author: raphi <r.gaziano@gmail.com>
 created: 2013-06-02
@@ -74,7 +74,6 @@ if not os.path.exists(FEEDS_FILE):
 with open(FEEDS_FILE, 'r') as f:
     FEEDS = json.load(f)
 
-FEEDS_NAMES = [fn for fn in FEEDS]
 
 def fetch_feed(args):
     """ 
@@ -159,6 +158,7 @@ def del_feed(args):
 if __name__ == '__main__':
 
     import argparse
+
     arg_parser = argparse.ArgumentParser(prog=',feedreadr')
     subparsers = arg_parser.add_subparsers(
         title='subcommands',
