@@ -72,7 +72,7 @@ with open(FEEDS_FILE, 'r') as f:
     FEEDS = json.load(f)
 
 def fetch_feed(args):
-    """ Script entry point. """
+    """ """
     url     = args.feed
     usrname = args.user
 
@@ -93,7 +93,13 @@ def fetch_feed(args):
     return 0
 
 def get_feeds_list():
+    """ """
     return FEEDS
+
+def write_feeds_list():
+    """ """
+    with open(FEEDS_FILE, 'w') as f:
+        json.dump(FEEDS, f)
 
 def list_feeds(args):
     """ """
@@ -112,8 +118,13 @@ def register_feed(args):
         'user': args.user
     }
     FEEDS[args.feedname] = new_feed
-    with open(FEEDS_FILE, 'w') as f:
-        json.dump(FEEDS, f)
+    write_feeds_list()
+    return 0
+
+def del_feed(args):
+    """ """
+    del(FEEDS[args.feed])
+    write_feeds_list()
     return 0
     
 if __name__ == '__main__':
@@ -147,6 +158,11 @@ if __name__ == '__main__':
     reg_parser.add_argument('user', nargs='?',
             help="pupu")
     reg_parser.set_defaults(func=register_feed)
+    
+    del_parser  = subparsers.add_parser('remove')
+    del_parser.add_argument('feed',
+            help="pipi")
+    del_parser.set_defaults(func=del_feed)
 
     args = arg_parser.parse_args()
     args.func(args)
