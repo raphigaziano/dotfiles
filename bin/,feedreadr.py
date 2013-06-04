@@ -1,5 +1,5 @@
 #! /usr/bin/python
-"""
+r"""
 Simple feed reader.
 
 Should handle both rss and atom feeds.
@@ -11,6 +11,8 @@ Dependencies:
 
 There's probably a lot of scripts that out there already that can handle
 the job much better, but who cares, reinventing the wheel is fun \o/
+
+Left todo: better error handling, autocompletion
 
 author: raphi <r.gaziano@gmail.com>
 created: 2013-06-02
@@ -97,7 +99,9 @@ def fetch_feed(args):
     else:
         pswd = ""
 
+    print("Retrieving feed from %s..." % (url))
     feed = parse(url, usrname, pswd)
+    print()
     print_entries(feed)
 
     return 0
@@ -156,37 +160,42 @@ if __name__ == '__main__':
 
     import argparse
     arg_parser = argparse.ArgumentParser(prog=',feedreadr')
-    subparsers = arg_parser.add_subparsers()
+    subparsers = arg_parser.add_subparsers(
+        title='subcommands',
+        help='Type ,feedreadr <subcommand> -h for more detailed help'
+    )
 
-    fetch_parser = subparsers.add_parser('fetch')
+    fetch_parser = subparsers.add_parser('fetch',
+            help="Read a feed.")
     fetch_parser.add_argument('-u', '--user',  action='store',
             help='User name - for feeds requiring authentication.'
                  'If provided, you will be prompted for a password. '
                  'Leave it blank if this is not needed')
-    fetch_parser.add_argument('feed', choices=FEEDS_NAMES,
+    fetch_parser.add_argument('feed',
             help='feed to parse. Can be either a valid url, or the name of '
                  'a registered feed.')
     fetch_parser.set_defaults(func=fetch_feed)
 
-    # TODO: MOAR DOC
-    
-    list_parser = subparsers.add_parser('list')
-    # arg_parser.add_argument('-l', '--list-feeds',  action='store_true',
-    #         help='List registered feeds and exit.')
+    list_parser = subparsers.add_parser('list',
+            help="List registered feeds.")
     list_parser.set_defaults(func=list_feeds)
     
-    reg_parser  = subparsers.add_parser('register')
+    reg_parser  = subparsers.add_parser('register',
+            help="Register a new feed.")
     reg_parser.add_argument('feedname', 
-            help="popo")
+            help="Name of the feed to be registered. Will be used for all "
+                 "future references to that partocular feed.")
     reg_parser.add_argument('feedurl',
-            help="papa")
+            help="Feed url.")
     reg_parser.add_argument('user', nargs='?',
-            help="pupu")
+            help="Optional user name the feed will be associated with. "
+                 "Provide it is authentication is required.")
     reg_parser.set_defaults(func=register_feed)
     
-    del_parser  = subparsers.add_parser('remove')
-    del_parser.add_argument('feed', choices=FEEDS_NAMES,
-            help="pipi")
+    del_parser  = subparsers.add_parser('remove',
+            help="Delete a registered feed.")
+    del_parser.add_argument('feed',
+            help="Name of the feed to delete.")
     del_parser.set_defaults(func=del_feed)
 
     args = arg_parser.parse_args()
