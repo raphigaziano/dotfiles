@@ -104,4 +104,49 @@ function __dotconf_complete {
 } &&
 complete -F __dotconf_complete ,dotconf.sh
 
+# Helper.
+# Get the list of feeds for ,feedreadr completion.
+function __get_feeds {
+    # TODO:
+    # Get actual registered feeds from json file.
+    feeds="sm bonjourmadame odieuxconnard"
+}
 
+# Subcmds & feed completion
+function __feedreadr_complete {
+    local opts cur prev cmd i
+    opts=(
+        fetch
+        list
+        register
+        remove
+    )
+
+    _get_comp_words_by_ref cur prev
+
+    # Try and get the sub command
+    for (( i=0; $i < ${#COMP_WORDS[@]}-1; i++ )); do
+        case "${opts[@]}" 
+            in *"${COMP_WORDS[i]}"*)
+                cmd=${COMP_WORDS[i]}
+                ;;
+        esac
+    done
+
+    if [[ -n $cmd ]]; then
+        case $cmd in
+            fetch|remove)
+                __get_feeds
+                COMPREPLY=( $(compgen -W "${feeds}" -- ${cur}) )
+                return 0
+                ;;
+            *)
+                ;;
+        esac
+    fi
+
+    # Subcommand completion
+    local optstring=$( printf "%s " "${opts[@]}")
+    COMPREPLY=( $(compgen -W "${optstring}" -- ${cur}) )
+} &&
+complete -F __feedreadr_complete ,feedreadr.py
