@@ -12,8 +12,7 @@ Dependencies:
 There's probably a lot of scripts that out there already that can handle
 the job much better, but who cares, reinventing the wheel is fun \o/
 
-Left todo: better error handling, template arg (with quick processing to
-simplify syntax)
+Left todo: better error handling
 
 author: raphi <r.gaziano@gmail.com>
 created: 2013-06-02
@@ -57,7 +56,12 @@ def parse(url="", username="", pswd=""):
     return feedparser.parse(r.text)
 
 def print_entries(feed, tmpl=DEFAULT_TMPL):
-    """ """
+    """ 
+    Print out the passed feed, according to the template tmpl.
+    tmpl should be a string containing new style (ie {}) format tags,
+    names after fields available on a feedparser's feed entry
+    (See DEFAULT_TMPL for an exemple).
+    """
     tmpl = tmpl.replace('{', '{0.')
     print(feed.feed.title)
     if not feed.entries:
@@ -101,7 +105,7 @@ def fetch_feed(args):
     print("Retrieving feed from %s..." % (url))
     feed = parse(url, usrname, pswd)
     print()
-    print_entries(feed)
+    print_entries(feed, tmpl=args.template or DEFAULT_TMPL)
 
     return 0
 
@@ -171,6 +175,11 @@ if __name__ == '__main__':
             help='User name - for feeds requiring authentication.'
                  'If provided, you will be prompted for a password. '
                  'Leave it blank if this is not needed')
+    fetch_parser.add_argument('-t', '--template', action='store',
+            help="Custom template for feed printing. This should be a string, "
+                 "enclosed in \"double quotes\", and containing valid tag "
+                 "names from the requested feed. Default is "
+                 "\"{title}\n  {link}\".")
     fetch_parser.add_argument('feed',
             help='feed to parse. Can be either a valid url, or the name of '
                  'a registered feed.')
