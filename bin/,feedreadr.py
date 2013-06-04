@@ -7,6 +7,7 @@ Should handle both rss and atom feeds.
 Dependencies:
     - requests
     - feedparser
+    - argparse (included in python > 2.7)
 
 There's probably a lot of scripts that out there already that can handle
 the job much better, but who cares, reinventing the wheel is fun \o/
@@ -71,8 +72,17 @@ if not os.path.exists(FEEDS_FILE):
 with open(FEEDS_FILE, 'r') as f:
     FEEDS = json.load(f)
 
+FEEDS_NAMES = [fn for fn in FEEDS]
+
 def fetch_feed(args):
-    """ """
+    """ 
+    Fetch the feed provided in args and displays it.
+    Mapped to the "fetch" command when used as a standalone script.
+    args should contain:
+        - feed:     The name or url of the feed to be fetched.
+        - user:     a user name (will prompt for a password if present). 
+                    (optional)
+    """
     url     = args.feed
     usrname = args.user
 
@@ -93,16 +103,19 @@ def fetch_feed(args):
     return 0
 
 def get_feeds_list():
-    """ """
+    """ Return all currently registered feeds as a dictionnary. """
     return FEEDS
 
 def write_feeds_list():
-    """ """
+    """ Write the current feeds list to the json "db". """
     with open(FEEDS_FILE, 'w') as f:
         json.dump(FEEDS, f)
 
 def list_feeds(args):
-    """ """
+    """
+    Print out a list of registered feeds.
+    Mapped to the "list" command when used as a standalone script.
+    """
     print(json.dumps(get_feeds_list(),
                      sort_keys=True,
                      indent=4, 
@@ -112,7 +125,14 @@ def list_feeds(args):
     return 0
 
 def register_feed(args):
-    """ """
+    """ 
+    Store a new feed to the json "db".
+    Mapped to the "register" command when used as a standalone script.
+    args should contain:
+        - feedname:     a name for the new feed.
+        - feedurl:      the new feed's url.
+        - user:         a user name to associate with the new feed (optional).
+    """
     new_feed = {
         'url': args.feedurl,
         'user': args.user
@@ -122,7 +142,12 @@ def register_feed(args):
     return 0
 
 def del_feed(args):
-    """ """
+    """ 
+    Delete a feed from the json "db".
+    Mapped to the "remove" command when used as a standalone script.
+    args should contain:
+        - feed:     the name of the feed to be removed.
+    """
     del(FEEDS[args.feed])
     write_feeds_list()
     return 0
@@ -138,7 +163,7 @@ if __name__ == '__main__':
             help='User name - for feeds requiring authentication.'
                  'If provided, you will be prompted for a password. '
                  'Leave it blank if this is not needed')
-    fetch_parser.add_argument('feed',
+    fetch_parser.add_argument('feed', choices=FEEDS_NAMES,
             help='feed to parse. Can be either a valid url, or the name of '
                  'a registered feed.')
     fetch_parser.set_defaults(func=fetch_feed)
@@ -160,7 +185,7 @@ if __name__ == '__main__':
     reg_parser.set_defaults(func=register_feed)
     
     del_parser  = subparsers.add_parser('remove')
-    del_parser.add_argument('feed',
+    del_parser.add_argument('feed', choices=FEEDS_NAMES,
             help="pipi")
     del_parser.set_defaults(func=del_feed)
 
