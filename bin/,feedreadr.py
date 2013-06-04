@@ -43,7 +43,7 @@ except ImportError:
     print("This script depends on the feedparser library.")
     sys.exit(1)
 
-DEFAULT_TMPL = "{0.title}\n  {0.link}"
+DEFAULT_TMPL = "{title}\n  {link}"
 
 def parse(url="", username="", pswd=""):
     """
@@ -57,8 +57,8 @@ def parse(url="", username="", pswd=""):
     return feedparser.parse(r.text)
 
 def print_entries(feed, tmpl=DEFAULT_TMPL):
-    """ Basic feed printing. """
-    # TODO: Sanitize templates
+    """ """
+    tmpl = tmpl.replace('{', '{0.')
     print(feed.feed.title)
     if not feed.entries:
         print("No entry")

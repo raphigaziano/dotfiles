@@ -30,4 +30,4 @@ if __name__ == '__main__':
     pswd = getpass('Google mail password: ')
     feed = feedreadr.parse("https://mail.google.com/mail/feed/atom",
                            USER, pswd)
-    feedreadr.print_entries(feed, "Subject: {0.title}\n\t{0.author}")
+    feedreadr.print_entries(feed, "Subject: {title}\n\t{author}")
