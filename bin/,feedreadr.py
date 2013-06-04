@@ -42,6 +42,7 @@ except ImportError:
     print("This script depends on the feedparser library.")
     sys.exit(1)
 
+DEFAULT_TMPL = "{0.title}\n  {0.link}"
 
 def parse(url="", username="", pswd=""):
     """
@@ -54,23 +55,14 @@ def parse(url="", username="", pswd=""):
         r.raise_for_status()
     return feedparser.parse(r.text)
 
-def _default_printer(feed):
+def print_entries(feed, tmpl=DEFAULT_TMPL):
     """ Basic feed printing. """
-    # TODO: prettier print output
+    # TODO: Sanitize templates
     print(feed.feed.title)
     if not feed.entries:
         print("No entry")
     for e in feed.entries:
-        print("%s\n<%s>" % (e.title, e.link))
-
-def print_entries(feed, printer=_default_printer):
-    """
-    Top level feed printer. Pass it a printer callback for custom output. 
-    Custom printers should accept a feed argument and are responsible for 
-    picking what should be diplayed.
-    """
-    return printer(feed)
-
+        print(tmpl.format(e))
 
 FEEDS_FILE = os.path.join(os.path.dirname(__file__), '.feeds')
 if not os.path.exists(FEEDS_FILE):
