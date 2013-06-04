@@ -114,9 +114,9 @@ complete -F __dotconf_complete ,dotconf.sh
 # Helper.
 # Get the list of feeds for ,feedreadr completion.
 function __get_feeds {
-    # TODO:
-    # Get actual registered feeds from json file.
-    feeds="sm bonjourmadame odieuxconnard"
+    feeds=$(python -c "from __future__ import print_function; \
+                       import json; data=json.load(open('$HOME/bin/.feeds')); \
+                       print(' '.join(data.keys()))")
 }
 
 # Subcmds & feed completion
@@ -139,7 +139,7 @@ function __feedreadr_complete {
                 COMPREPLY=( $(compgen -W "${feeds}" -- ${cur}) )
                 return 0
                 ;;
-            *)
+            *)  # Catch-all case: no-op
                 ;;
         esac
     fi
