@@ -24,6 +24,13 @@ import os
 import json
 from getpass import getpass
 
+# Prevent encoding troubles when piping output,
+# ie make sure sys.stdout is utf8
+if sys.stdout.encoding is None:
+    import codecs
+    writer = codecs.getwriter('utf-8')
+    sys.stdout = writer(sys.stdout)
+
 try:
     import requests
 except ImportError:
