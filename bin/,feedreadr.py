@@ -50,10 +50,9 @@ def parse(url="", username="", pswd=""):
     username & pswd will be used for authentication if provided.
     Only handle getting feeds from http(s) for now.
     """
-    r = requests.get(url, auth=(username, pswd))
-    if r.status_code != 200:
-        r.raise_for_status()
-    return feedparser.parse(r.text)
+    resp = requests.get(url, auth=(username, pswd))
+    resp.raise_for_status()
+    return feedparser.parse(resp.text)
 
 def print_entries(feed, tmpl=DEFAULT_TMPL):
     """ 
