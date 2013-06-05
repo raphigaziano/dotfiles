@@ -51,7 +51,7 @@ def parse(url="", username="", pswd=""):
     Only handle getting feeds from http(s) for now.
     """
     resp = requests.get(url, auth=(username, pswd))
-    resp.raise_for_status()
+    resp.raise_for_status() # returns None if status code == 200
     return feedparser.parse(resp.text)
 
 def print_entries(feed, tmpl=DEFAULT_TMPL):
