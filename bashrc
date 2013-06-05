@@ -145,6 +145,8 @@ alias ll="ls -lh"
 
 # Check gmail account
 # (depends on ,feedreadr.py)
+# gmail feed for registration:
+# https://mail.google.com/mail/feed/atom
 alias cgmail=',feedreadr.py fetch gmail'
 
 # Run a simple http server in cwd
