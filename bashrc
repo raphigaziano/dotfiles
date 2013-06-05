@@ -74,6 +74,13 @@ function project {
     cd $DEVDIR/$1
 }
 
+# Check gmail account
+# (depends on the ,feedreadr script)
+function checkgmail {
+    ,feedreadr.py fetch -u r.gaziano@gmail.com -t "{title}\n    {author}" \
+                        https://mail.google.com/mail/feed/atom
+}
+
 # Fun crap \o/
 
 function rcowsay() {
