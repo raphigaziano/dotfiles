@@ -111,13 +111,13 @@ def fetch_feed(args):
     try:
         feed = parse(url, usrname, pswd)
     except requests.RequestException as e:
-        print("Error: %s" %e)
+        print("Error: %s" % e)
         sys.exit(1)
     print()
     try:
         print_entries(feed, tmpl or DEFAULT_TMPL)
     except AttributeError as e:
-        print("Error: %s" %e)
+        print("Error: %s" % e)
         return 1
 
     return 0
