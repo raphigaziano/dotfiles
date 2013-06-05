@@ -112,7 +112,7 @@ def fetch_feed(args):
         feed = parse(url, usrname, pswd)
     except requests.RequestException as e:
         print("Error: %s" % e)
-        sys.exit(1)
+        return 1
     print()
     try:
         print_entries(feed, tmpl or DEFAULT_TMPL)
