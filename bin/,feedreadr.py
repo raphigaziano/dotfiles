@@ -65,7 +65,7 @@ def print_entries(feed, tmpl=DEFAULT_TMPL):
     tmpl = tmpl.replace('{', '{0.')
     # Shell can't pass escape characters, sends literals instead...
     tmpl = tmpl.replace('\\n', '\n') # TODO: better subst
-    print(feed.feed.title)
+    print("%s\n" % feed.feed.title);
     if not feed.entries:
         print("No entry")
     for i, e in enumerate(feed.entries):
@@ -108,7 +108,11 @@ def fetch_feed(args):
         pswd = ""
 
     print("Retrieving feed from %s..." % (url))
-    feed = parse(url, usrname, pswd)
+    try:
+        feed = parse(url, usrname, pswd)
+    except requests.RequestException as e:
+        print("Error: %s" %e)
+        sys.exit(1)
     print()
     print_entries(feed, tmpl or DEFAULT_TMPL)
 
