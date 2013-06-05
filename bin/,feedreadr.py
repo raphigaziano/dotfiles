@@ -63,11 +63,14 @@ def print_entries(feed, tmpl=DEFAULT_TMPL):
     (See DEFAULT_TMPL for an exemple).
     """
     tmpl = tmpl.replace('{', '{0.')
+    # Shell can't pass escape characters, sends literals instead...
+    tmpl = tmpl.replace('\\n', '\n') # TODO: better subst
     print(feed.feed.title)
     if not feed.entries:
         print("No entry")
-    for e in feed.entries:
-        print(tmpl.format(e))
+    for i, e in enumerate(feed.entries):
+        e.n = i
+        print(tmpl.format(e))     # TODO: add n to def tmpl and DOC IT
 
 FEEDS_FILE = os.path.join(os.path.dirname(__file__), '.feeds')
 if not os.path.exists(FEEDS_FILE):
@@ -90,11 +93,13 @@ def fetch_feed(args):
     """
     url     = args.feed
     usrname = args.user
+    tmpl    = args.template
 
     if url in FEEDS:
         # Keep assignments in that order to avoid using the actual
         # url as a key
-        usrname = FEEDS[url]['user']
+        usrname = FEEDS[url].get('user', '')
+        tmpl    = tmpl or FEEDS[url].get('template', '')
         url     = FEEDS[url]['url']
 
     if usrname:
@@ -105,7 +110,7 @@ def fetch_feed(args):
     print("Retrieving feed from %s..." % (url))
     feed = parse(url, usrname, pswd)
     print()
-    print_entries(feed, tmpl=args.template or DEFAULT_TMPL)
+    print_entries(feed, tmpl or DEFAULT_TMPL)
 
     return 0
 
@@ -142,8 +147,12 @@ def register_feed(args):
     """
     new_feed = {
         'url': args.feedurl,
-        'user': args.user
     }
+    if args.user:
+        new_feed['user']     = args.user
+    if args.template:
+        new_feed['template'] = args.template
+
     FEEDS[args.feedname] = new_feed
     write_feeds_list()
     return 0
@@ -178,8 +187,8 @@ if __name__ == '__main__':
     fetch_parser.add_argument('-t', '--template', action='store',
             help="Custom template for feed printing. This should be a string, "
                  "enclosed in \"double quotes\", and containing valid tag "
-                 "names from the requested feed. Default is "
-                 "\"{title}\n  {link}\".")
+                 "names from the requested feed enclosed in curly brackets. "
+                 "Default is \"{title}\n  {link}\".")
     fetch_parser.add_argument('feed',
             help='feed to parse. Can be either a valid url, or the name of '
                  'a registered feed.')
@@ -196,9 +205,11 @@ if __name__ == '__main__':
                  "future references to that partocular feed.")
     reg_parser.add_argument('feedurl',
             help="Feed url.")
-    reg_parser.add_argument('user', nargs='?',
+    reg_parser.add_argument('-u', '--user', action='store',
             help="Optional user name the feed will be associated with. "
                  "Provide it is authentication is required.")
+    reg_parser.add_argument('-t', '--template', action='store',
+            help="Optional template string for displaying the feed.")
     reg_parser.set_defaults(func=register_feed)
     
     del_parser  = subparsers.add_parser('remove',
