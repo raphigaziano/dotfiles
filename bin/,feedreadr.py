@@ -114,7 +114,11 @@ def fetch_feed(args):
         print("Error: %s" %e)
         sys.exit(1)
     print()
-    print_entries(feed, tmpl or DEFAULT_TMPL)
+    try:
+        print_entries(feed, tmpl or DEFAULT_TMPL)
+    except AttributeError as e:
+        print("Error: %s" %e)
+        return 1
 
     return 0
 
