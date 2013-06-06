@@ -42,7 +42,7 @@ except ImportError:
     print("This script depends on the feedparser library.")
     sys.exit(1)
 
-DEFAULT_TMPL = "{title}\n  {link}"
+DEFAULT_TMPL = "{n} - {title}\n    {updated}\n    <{link}>" # TODO update doc
 
 def parse(url="", username="", pswd=""):
     """
@@ -52,7 +52,7 @@ def parse(url="", username="", pswd=""):
     """
     resp = requests.get(url, auth=(username, pswd))
     resp.raise_for_status() # returns None if status code == 200
-    return feedparser.parse(resp.text)
+    return feedparser.parse(resp.content)
 
 def print_entries(feed, tmpl=DEFAULT_TMPL):
     """ 
@@ -64,7 +64,7 @@ def print_entries(feed, tmpl=DEFAULT_TMPL):
     tmpl = tmpl.replace('{', '{0.')
     # Shell can't pass escape characters, sends literals instead...
     tmpl = tmpl.replace('\\n', '\n') # TODO: better subst
-    print("\n%s\n" % feed.feed.title);
+    print("\n%s\n" % feed.feed.title)
     if not feed.entries:
         print("No entry")
     for i, e in enumerate(feed.entries):
@@ -190,7 +190,8 @@ if __name__ == '__main__':
             help="Custom template for feed printing. This should be a string, "
                  "enclosed in \"double quotes\", and containing valid tag "
                  "names from the requested feed enclosed in curly brackets. "
-                 "Default is \"{title}\n  {link}\".")
+                 "You can also provice a {i} placeholder for line numbering. "
+                 " Default is \"{n} - {title}\n    {updated}\n    <{link}>\".")
     fetch_parser.add_argument('feed',
             help='feed to parse. Can be either a valid url, or the name of '
                  'a registered feed.')
@@ -211,7 +212,9 @@ if __name__ == '__main__':
             help="Optional user name the feed will be associated with. "
                  "Provide it is authentication is required.")
     reg_parser.add_argument('-t', '--template', action='store',
-            help="Optional template string for displaying the feed.")
+            help="Optional template string for displaying the feed. "
+                 "See ,feedreadr fetch -h for more details on template strings."
+    )
     reg_parser.set_defaults(func=register_feed)
     
     del_parser  = subparsers.add_parser('remove',
