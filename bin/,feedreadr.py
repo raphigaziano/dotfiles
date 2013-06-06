@@ -42,7 +42,7 @@ except ImportError:
     print("This script depends on the feedparser library.")
     sys.exit(1)
 
-DEFAULT_TMPL = "{n} - {title}\n    {updated}\n    <{link}>" # TODO update doc
+DEFAULT_TMPL = "{n} - {title}\n    {updated}\n    <{link}>"
 
 def parse(url="", username="", pswd=""):
     """
@@ -69,7 +69,7 @@ def print_entries(feed, tmpl=DEFAULT_TMPL):
         print("No entry")
     for i, e in enumerate(feed.entries):
         e.n = i
-        print(tmpl.format(e))     # TODO: add n to def tmpl and DOC IT
+        print(tmpl.format(e))     
 
 FEEDS_FILE = os.path.join(os.path.dirname(__file__), '.feeds')
 if not os.path.exists(FEEDS_FILE):
