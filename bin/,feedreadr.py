@@ -97,7 +97,7 @@ def fetch_feed(args):
     if url in FEEDS:
         # Keep assignments in that order to avoid using the actual
         # url as a key
-        usrname = FEEDS[url].get('user', '')
+        usrname = usrname or FEEDS[url].get('user', '')
         tmpl    = tmpl or FEEDS[url].get('template', '')
         url     = FEEDS[url]['url']
 
@@ -159,6 +159,22 @@ def register_feed(args):
     write_feeds_list()
     return 0
 
+def update_feed(args):
+    """
+
+    """
+    feed = FEEDS.get(args.feedname, None)
+    if feed is None:
+        print('Invalid feed name: %s' % args.feedname)
+        return 1
+    if not args.feedurl:
+        args.feedurl  = feed.get('url')
+    if not args.user:
+        args.user     = feed.get('user', '')
+    if not args.template:
+        args.template = feed.get('template', '')
+    return register_feed(args)
+
 def del_feed(args):
     """ 
     Delete a feed from the json "db".
@@ -205,7 +221,7 @@ if __name__ == '__main__':
             help="Register a new feed.")
     reg_parser.add_argument('feedname', 
             help="Name of the feed to be registered. Will be used for all "
-                 "future references to that partocular feed.")
+                 "future references to that particular feed.")
     reg_parser.add_argument('feedurl',
             help="Feed url.")
     reg_parser.add_argument('-u', '--user', action='store',
@@ -217,6 +233,21 @@ if __name__ == '__main__':
     )
     reg_parser.set_defaults(func=register_feed)
     
+    up_parser  = subparsers.add_parser('update',
+            help="Update an existing feed.")
+    up_parser.add_argument('feedname', 
+            help="Name of the feed to update.")
+    up_parser.add_argument('-r', '--feedurl', action='store',
+            help="Feed url.")
+    up_parser.add_argument('-u', '--user', action='store',
+            help="Optional user name the feed will be associated with. "
+                 "Provide it is authentication is required.")
+    up_parser.add_argument('-t', '--template', action='store',
+            help="Optional template string for displaying the feed. "
+                 "See ,feedreadr fetch -h for more details on template strings."
+    )
+    up_parser.set_defaults(func=update_feed)
+
     del_parser  = subparsers.add_parser('remove',
             help="Delete a registered feed.")
     del_parser.add_argument('feed',
