@@ -148,6 +148,7 @@ alias ll="ls -lh"
 # gmail feed for registration:
 # https://mail.google.com/mail/feed/atom
 alias cgmail=',feedreadr.py fetch gmail'
+alias ggmail='chromium-browser https://mail.google.com/mail/?shva=1#inbox'
 
 # Run a simple http server in cwd
 alias serve="python -m SimpleHTTPServer"
