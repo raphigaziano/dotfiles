@@ -133,6 +133,7 @@ function _vim_filext {
 }
 
 alias v="vim"
+alias vi="vim"
 alias vpy="_vim_filext 'py'"
 alias vhtml="_vim_filext 'html'"
 alias vcss="_vim_filext 'css'"
@@ -148,6 +149,7 @@ alias ll="ls -lh"
 # gmail feed for registration:
 # https://mail.google.com/mail/feed/atom
 alias cgmail=',feedreadr.py fetch gmail'
+# open chromium on gmail
 alias ggmail='chromium-browser https://mail.google.com/mail/?shva=1#inbox'
 
 # Run a simple http server in cwd
