@@ -112,6 +112,11 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 
+# Shortcut from cloning from a personal repo
+function clone {
+    git clone $GITHUBHOME/$1
+}
+
 # Quickie vim
 
 # Compute filenames based on the passed extension, and call vim with those.
