@@ -52,6 +52,8 @@ syntax on
 set background=dark     " If using a dark background within the 
                         " editing area and syntax highlighting turn 
                         " on this option as well
+" highligh color for Vmode selection
+highlight Visual ctermbg='DarkRed'
 
 " Status line
 set laststatus=2                                
