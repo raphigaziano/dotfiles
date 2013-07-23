@@ -16,7 +16,7 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[01;33m\]\w \n
 ### ENV VARS ###
 
 export EDITOR=vim
-export PATH=$PATH:~/bin  
+export PATH=$PATH:~/bin:~/.local/bin
 
 export GITHUBHOME=https://github.com/raphigaziano  # Git Home
 export DEVDIR=~/dev                                # Dev dir
