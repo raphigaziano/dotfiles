@@ -11,11 +11,14 @@
 #
 ##############################################################################
 
+# Do NOT run as root
+# TODO: warn user if so
+
 # Check if user is root
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root"
-    exit 1
-fi
+# if [[ $EUID -ne 0 ]]; then
+    # echo "This script must be run as root"
+    # exit 1
+# fi
 
 CONFDIR=~/.dotfiles
 BURRITOURL=https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh
@@ -29,4 +32,4 @@ curl -s $BURRITOURL | $SHELL
 
 # Install packages from pip-requirements.txt
 # (pip should be installed already)
-pip install -r $CONFDIR/scripts/pip-requirements.txt
+pip install --user -r $CONFDIR/scripts/pip-requirements.txt
