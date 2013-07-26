@@ -49,4 +49,4 @@ fi
 
 pipfile=$CONFDIR/scripts/pip-requirements.txt
 echo "Installing python packages listed in $pipfile..."
-pip install --user -r 
+pip install --user -r $pipfile
