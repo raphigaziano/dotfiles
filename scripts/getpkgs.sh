@@ -15,6 +15,7 @@ packages=(
     tree
     python-pip
     exuberant-ctags
+    curl
 )
 
 # Check if user is root
