@@ -23,7 +23,7 @@ export DEVDIR=~/dev                                # Dev dir
 
 # virtualenvwrapper activation
 export WORKON_HOME=$HOME/.virtualenvs
-source $HOME/.venvburrito/startup.sh
+# source $HOME/.venvburrito/startup.sh
 
 # Source personal autocompletion script
 source $HOME/bin/.autocompletions.sh
