@@ -23,7 +23,6 @@ export DEVDIR=~/dev                                # Dev dir
 
 # virtualenvwrapper activation
 export WORKON_HOME=$HOME/.virtualenvs
-# source $HOME/.venvburrito/startup.sh
 
 # Source personal autocompletion script
 source $HOME/bin/.autocompletions.sh
@@ -89,12 +88,17 @@ function cow_fortune {
 
 ### Aliases ###
 
+# Repeat last cmd as super user
+alias plz="sudo !!"
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
+# Pip alias
+alias pipusr='pip install --user'
 # Git aliases
 
 alias ga='git add'
