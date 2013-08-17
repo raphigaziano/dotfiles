@@ -157,7 +157,7 @@ alias ll="ls -lh"
 # (depends on ,feedreadr.py)
 # gmail feed for registration:
 # https://mail.google.com/mail/feed/atom
-alias cgmail=',feedreadr.py fetch gmail'
+alias cgmail=',feedreadr.py fetch https://mail.google.com/mail/feed/atom -u r.gaziano'
 # open chromium on gmail
 alias ggmail='chromium-browser https://mail.google.com/mail/?shva=1#inbox'
 
