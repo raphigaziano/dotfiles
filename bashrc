@@ -21,8 +21,9 @@ export PATH=$PATH:~/bin:~/.local/bin
 export GITHUBHOME=https://github.com/raphigaziano  # Git Home
 export DEVDIR=~/dev                                # Dev dir
 
-# virtualenvwrapper activation
+# virtualenvwrapper settings
 export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$DEVDIR
 
 # Source personal autocompletion script
 source $HOME/bin/.autocompletions.sh
@@ -163,6 +164,9 @@ alias ggmail='chromium-browser https://mail.google.com/mail/?shva=1#inbox'
 
 # Run a simple http server in cwd
 alias serve="python -m SimpleHTTPServer"
+
+# Django-pylint
+alias djlint="pylint --generated-members=objects,DoesNotExist"
 
 ### Startup ###
 
