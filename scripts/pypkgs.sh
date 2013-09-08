@@ -32,18 +32,6 @@ if $root; then
     esac
 fi
 
-# First get virtualenv & virtualenvwrapper, 
-# using venv-burrito to simplify the process
-if ! $root; then
-    echo "Installing venv-burrito..."
-    curl -s $BURRITOURL | $SHELL
-
-    # Create a "master" virtual env ?
-    # source $VENVBURRITO/startup.sh
-else
-    echo "Bypassing venv-burrito installation."
-fi
-
 # Install packages from pip-requirements.txt
 # (pip should be installed already)
 
