@@ -12,7 +12,7 @@
 ##############################################################################
 
 CONFDIR=~/.dotfiles
-BURRITOURL=https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh
+BURRITOURL=https://raw.github.com/raphigaziano/virtualenv-burrito/master/virtualenv-burrito.sh
 
 # Store root test for reuse
 root="[ $EUID -eq 0 ]"
