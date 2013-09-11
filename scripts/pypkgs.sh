@@ -12,6 +12,8 @@
 ##############################################################################
 
 CONFDIR=~/.dotfiles
+# Pointing to forked repo for latest virtualenv.
+# Still not using it -> no py3 support yet
 BURRITOURL=https://raw.github.com/raphigaziano/virtualenv-burrito/master/virtualenv-burrito.sh
 
 # Store root test for reuse
@@ -34,15 +36,16 @@ fi
 
 # First get virtualenv & virtualenvwrapper, 
 # using venv-burrito to simplify the process
-if ! $root; then
-    echo "Installing venv-burrito..."
-    curl -s $BURRITOURL | $SHELL
 
-    # Create a "master" virtual env ?
-    # source $VENVBURRITO/startup.sh
-else
-    echo "Bypassing venv-burrito installation."
-fi
+# if ! $root; then
+#     echo "Installing venv-burrito..."
+#     curl -s $BURRITOURL | $SHELL
+# 
+#     # Create a "master" virtual env ?
+#     # source $VENVBURRITO/startup.sh
+# else
+#     echo "Bypassing venv-burrito installation."
+# fi
 
 # Install packages from pip-requirements.txt
 # (pip should be installed already)
