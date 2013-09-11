@@ -1,8 +1,6 @@
-virtualenvwrapper
 Django
 ipython
 ipdb
 nose
 pylint
 grin
-tox
