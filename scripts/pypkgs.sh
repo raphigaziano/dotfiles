@@ -53,3 +53,7 @@ fi
 pipfile=$CONFDIR/scripts/pip-requirements.txt
 echo "Installing python packages listed in $pipfile..."
 pip install --user -r $pipfile
+
+# Download the current django_bash_completion script into local completion dirs
+mkdir $CONFDIR/bin/.completionscripts/
+wget https://raw.github.com/django/django/master/extras/django_bash_completion -P $CONFDIR/bin/.completionscripts/

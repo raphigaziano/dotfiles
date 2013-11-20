@@ -149,3 +149,6 @@ function __feedreadr_complete {
     COMPREPLY=( $(compgen -W "${optstring}" -- ${cur}) )
 } &&
 complete -F __feedreadr_complete ,feedreadr.py
+
+# Source other completion scripts
+source ~/.dotfiles/bin/.completionscripts/django_bash_completion
