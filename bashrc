@@ -25,6 +25,8 @@ export DEVDIR=~/dev                                # Dev dir
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$DEVDIR
 
+source $HOME/.local/bin/virtualenvwrapper.sh
+
 # Source personal autocompletion script
 source $HOME/bin/.autocompletions.sh
 
