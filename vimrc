@@ -56,7 +56,7 @@ set background=dark     " If using a dark background within the
                     " editing area and syntax highlighting turn 
                     " on this option as well
 " highligh color for Vmode selection
-highlight Visual ctermbg='DarkRed'
+highlight Visual ctermfg='White' ctermbg='Yellow'
 
 " Status line
 set laststatus=2                                
@@ -78,7 +78,7 @@ set backspace=indent,eol,start  " Backspace behaviour
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 
 set number              " Set line numbers
-" set relativenumber    " Line numbering relative to current line
+set relativenumber      " Line numbering relative to current line
 
 set showcmd             " Show (partial) command in status line.
 set showmode            " Show current mode
