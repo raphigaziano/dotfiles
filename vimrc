@@ -12,8 +12,8 @@
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
-" let mapleader=","
-" let maplocalleader=","
+let mapleader=","
+let maplocalleader=","
 
 " Load pathogen modules.
 " Keep this at the top of the file, right after runtime! debian.vim
