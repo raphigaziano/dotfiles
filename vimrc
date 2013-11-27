@@ -12,6 +12,9 @@
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
+let mapleader=","
+let maplocalleader=","
+
 " Load pathogen modules.
 " Keep this at the top of the file, right after runtime! debian.vim
 call pathogen#infect()
@@ -19,7 +22,7 @@ call pathogen#helptags()
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
+source /etc/vim/vimrc.local
 endif
 
 """ General Options """
@@ -29,31 +32,31 @@ set encoding=utf-8 fileencoding=
 
 " Jump to the last position when reopening a file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 " Plugins, indent rules and syntax depend on filetype
 if version >= 600
-        syntax enable
+    syntax enable
 
-        if version >= 700
-            filetype plugin indent on
-        else
-            filetype on
-            filetype plugin on
-            filetype indent on
-        endif
+    if version >= 700
+        filetype plugin indent on
+    else
+        filetype on
+        filetype plugin on
+        filetype indent on
+    endif
 else
-        :finish
+    :finish
 endif
 
 syntax on
 
 set background=dark     " If using a dark background within the 
-                        " editing area and syntax highlighting turn 
-                        " on this option as well
+                    " editing area and syntax highlighting turn 
+                    " on this option as well
 " highligh color for Vmode selection
-highlight Visual ctermbg='DarkRed'
+highlight Visual ctermfg='White' ctermbg='Yellow'
 
 " completion menu colors
 highlight Pmenu ctermbg='DarkBlue' ctermfg='LightGreen'
@@ -80,7 +83,7 @@ set backspace=indent,eol,start  " Backspace behaviour
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 
 set number              " Set line numbers
-" set relativenumber    " Line numbering relative to current line
+set relativenumber      " Line numbering relative to current line
 
 set showcmd             " Show (partial) command in status line.
 set showmode            " Show current mode
@@ -89,11 +92,11 @@ set nobackup            " Make no *.bak
 set writebackup         " Keep backup while editing
 set nowrap              " Do not wrap text
 set autowrite		    " Automatically save before commands like 
-                        " :next and :make
+                    " :next and :make
 set mouse=a	        	" Enable mouse usage (all modes)
 
 set cpoptions+=$        " Show a dollar sign at the end of the section being
-                        " changed
+                    " changed
 set timeoutlen=500
 
 set virtualedit=all
@@ -149,6 +152,19 @@ imap <F5> <C-R>=strftime("%Y-%m-%d %a %H:%M")<CR>
 
 map <F2> :NERDTreeToggle<cr>
 map <F3> :TlistToggle<cr>
+
+" Uppercase current word when in insert mode
+inoremap <c-u> <esc>viwU<esc>a
+
+" Edit vimrc
+nnoremap <leader>ev :split $MYVIMRC<cr>
+" source it
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+""" Abbreviations """
+
+""" Typo guards
+iabbrev amdin admin
 
 """ Windows settings """
 """ ( Boo, I know  ) """
