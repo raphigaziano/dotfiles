@@ -148,13 +148,16 @@ imap <F5> <C-R>=strftime("%Y-%m-%d %a %H:%M")<CR>
 map <F2> :NERDTreeToggle<cr>
 map <F3> :TlistToggle<cr>
 
-" Uppercase current word when in insert mode
-inoremap <c-u> <esc>viwU<esc>a
+" Uppercase current word when in insert MODE
+inoremap <c-u> <esc>mqviwU<esc>`qa
 
 " Edit vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
 " source it
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+""" Disabled mappings 
+" inoremap <esc> <nop>
 
 """ Abbreviations """
 
