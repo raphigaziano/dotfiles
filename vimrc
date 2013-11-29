@@ -58,6 +58,11 @@ set background=dark     " If using a dark background within the
 " highligh color for Vmode selection
 highlight Visual ctermfg='White' ctermbg='Yellow'
 
+" completion menu colors
+highlight Pmenu ctermbg='DarkBlue' ctermfg='LightGreen'
+highlight PmenuSel cterm='bold' ctermfg='LightGreen'
+
+
 " Status line
 set laststatus=2                                
 set statusline=                                 
