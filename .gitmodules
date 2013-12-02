@@ -34,3 +34,6 @@
 [submodule "vim/bundle/python-mode"]
 	path = vim/bundle/python-mode
 	url = git://github.com/klen/python-mode.git
+[submodule "fonts"]
+	path = fonts
+	url = https://github.com/Lokaltog/powerline-fonts

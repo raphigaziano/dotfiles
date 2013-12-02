@@ -13,6 +13,9 @@ set -o vi
 # Custom prompt
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[01;33m\]\w \n\[\033[01;34m\]\$\[\033[00m\] '
 
+# Activate powerline
+. $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+
 ### ENV VARS ###
 
 export EDITOR=vim

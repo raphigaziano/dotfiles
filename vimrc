@@ -20,6 +20,9 @@ let maplocalleader=","
 call pathogen#infect()
 call pathogen#helptags()
 
+" Activate powerline
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
+
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
 source /etc/vim/vimrc.local
