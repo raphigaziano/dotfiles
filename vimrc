@@ -135,6 +135,11 @@ map <c-l> <c-w>l
 " Ctrl-Space for autocompletion
 inoremap <Nul> <C-x><C-o>
 
+" Ctrl-j/k to select items from ompletion menus (does this screw something
+" up?)
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
+
 " Use j+k to escape insert mode
 inoremap jk <Esc>
 
@@ -154,12 +159,23 @@ map <F2> :NERDTreeToggle<cr>
 map <F3> :TlistToggle<cr>
 
 " Uppercase current word when in insert MODE
+" TODO Use <cword>?
+" inoremap <c-u> <esc>mqviwU<esc>`qa
 inoremap <c-u> <esc>mqviwU<esc>`qa
 
 " Edit vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
 " source it
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Toggle between current & last buffer
+" All modes ? or which ones ? 
+nnoremap <leader>t :b#<cr>
+
+" open / close quickfix window
+" TODO: Toggle ?
+nnoremap <leader>qfo :copen<cr>
+nnoremap <leader>qfc :cclose<cr>
 
 """ Disabled mappings 
 " inoremap <esc> <nop>
@@ -196,6 +212,9 @@ let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlP'
 " CtrlP workind dir
 let g:ctrlp_working_path_mode = 'ra'
+
+" Python-mode opts
+let g:pymode_lint_cwindow = 0
 
 """ FileTypes """
 
