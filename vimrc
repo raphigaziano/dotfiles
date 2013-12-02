@@ -138,10 +138,22 @@ map <c-l> <c-w>l
 " Ctrl-Space for autocompletion
 inoremap <Nul> <C-x><C-o>
 
-" Ctrl-j/k to select items from ompletion menus (does this screw something
-" up?)
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
+" Ctrl-j/k to select items from ompletion menus 
+" from
+" http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
+function! OmniPopup(action)
+    if pumvisible()
+        if a:action == 'j'
+            return "\<C-N>"
+        elseif a:action == 'k'
+            return "\<C-P>"
+        endif
+    endif
+    return a:action
+endfunction
+
+inoremap <c-j> <C-R>=OmniPopup('j')<CR>
+inoremap <c-k> <C-R>=OmniPopup('k')<CR>
 
 " Use j+k to escape insert mode
 inoremap jk <Esc>
