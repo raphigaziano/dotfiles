@@ -1,0 +1,1 @@
+- IPython config (in .config/ipython/...)
