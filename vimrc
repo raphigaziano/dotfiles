@@ -181,9 +181,6 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 nmap <F5> a<C-R>=strftime("%Y-%m-%d %a %H:%M")<CR><Esc>
 imap <F5> <C-R>=strftime("%Y-%m-%d %a %H:%M")<CR>
 
-map <F2> :NERDTreeToggle<cr>
-map <F3> :TlistToggle<cr>
-
 " Uppercase current word when in insert MODE
 " TODO Use <cword>?
 " inoremap <c-u> <esc>mqviwU<esc>`qa
@@ -228,18 +225,31 @@ endif
 
 """ Plugin Options """
 
+" NERDTree "
+
+" Auto close explorer on opening a file
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeHighlightCursorline=1
+let g:NERDChristmasTree=1
+
+" mappings
+map <F2> :NERDTreeToggle<cr>
+map <F3> :TlistToggle<cr>
+
+" Taglist "
 " Focus Tag window on opening
 let Tlist_GainFocus_On_ToggleOpen = 1
 " Tag window on the right
 let Tlist_Use_Right_Window = 1
 
-" CtrlP bindings
+" ctrp "
+" bindings
 let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlP'
 " CtrlP workind dir
 let g:ctrlp_working_path_mode = 'ra'
 
-" Python-mode opts
+" Python-mode "
 let g:pymode_lint_cwindow = 0
 
 """ FileTypes """
