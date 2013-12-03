@@ -21,7 +21,18 @@ call pathogen#infect()
 call pathogen#helptags()
 
 " Activate powerline
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
+" set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
+" Use powerline fonts with vim-airline
+" TODO : Error checking
+let g:airline_powerline_fonts=1
+" Airline themes i like:
+" - murmur
+" - serene
+" - simple
+" - ubaryd
+" - understated
+" - wombat
+let g:airline_theme='wombat'
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
