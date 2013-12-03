@@ -236,6 +236,10 @@ let g:NERDChristmasTree=1
 map <F2> :NERDTreeToggle<cr>
 map <F3> :TlistToggle<cr>
 
+" bufferline "
+let g:bufferline_rotate = 1
+let g:bufferline_fixed_index =  -1 "always last
+
 " Taglist "
 " Focus Tag window on opening
 let Tlist_GainFocus_On_ToggleOpen = 1
@@ -250,7 +254,9 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 
 " Python-mode "
+" Do not open quickfix window on each lint
 let g:pymode_lint_cwindow = 0
+" TODO: Select linters and disable some
 
 """ FileTypes """
 
