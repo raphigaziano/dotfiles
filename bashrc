@@ -173,6 +173,9 @@ alias serve="python -m SimpleHTTPServer"
 # Django-pylint
 alias djlint="pylint --generated-members=objects,DoesNotExist"
 
+# Purge python .pyc files
+alias kilpyc='find . -name "*.pyc" -delete'
+
 ### Startup ###
 
 cow_fortune
