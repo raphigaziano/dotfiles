@@ -174,7 +174,7 @@ alias serve="python -m SimpleHTTPServer"
 alias djlint="pylint --generated-members=objects,DoesNotExist"
 
 # Purge python .pyc files
-alias kilpyc='find . -name "*.pyc" -delete'
+alias killpyc='find . -name "*.pyc" -delete'
 
 ### Startup ###
 
