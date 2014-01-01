@@ -52,6 +52,8 @@ case $cmd in
                 echo "new link $HOME/.$f -> ${path}"
                 ln -s $path $HOME/.$f
             fi
+            # TODO: Some files might need *not* to be sourced automagically
+            source $CONFDIR/$f    
         done
         ;;
     script)
