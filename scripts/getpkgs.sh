@@ -18,7 +18,6 @@ packages=(
     exuberant-ctags
     curl
     autojump
-    git
 )
 
 # Check if user is root
