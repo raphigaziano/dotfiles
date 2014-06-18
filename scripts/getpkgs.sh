@@ -16,6 +16,7 @@ packages=(
     python-pip
     exuberant-ctags
     curl
+    autojump
 )
 
 # Check if user is root
