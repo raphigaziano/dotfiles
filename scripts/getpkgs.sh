@@ -12,6 +12,7 @@
 
 packages=(
     tmux
+    terminator
     tree
     python-pip
     exuberant-ctags
