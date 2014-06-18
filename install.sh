@@ -44,10 +44,9 @@ then
     ln -s $DIR/bin ~/bin
 fi
 
-# update the submodules
-git submodule update --init
+# clone vundle (vim plugin manager)
+mkdir ~/.dotfiles/vim/bundle
+git clone https://github.com/gmarik/vundle.git ~/.dotfiles/vim/bundle/vundle
 
 # source bashrc
 source ~/.bashrc
-
-# to add new submodules use git submodule add [repo url] [path to folder]

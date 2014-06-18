@@ -12,18 +12,32 @@
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
+set nocompatible
+
+filetype off
+set runtimepath+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'kien/ctrlp.vim.git'
+Bundle 'klen/python-mode.git'
+Bundle 'scrooloose/syntastic.git'
+Bundle 'bling/vim-airline'
+" Bundle 'junegunn/vim-easy-align.git'
+" Bundle 'Lokaltog/vim-easymotion.git'
+" Bundle 'rstacruz/sparkup.git'
+" Bundle 'tpope/vim-surround.git'
+" Bundle 'bling/vim-bufferline'
+
 let mapleader=","
 let maplocalleader=","
 
-" Load pathogen modules.
-" Keep this at the top of the file, right after runtime! debian.vim
-call pathogen#infect()
-call pathogen#helptags()
+" " Load pathogen modules.
+" " Keep this at the top of the file, right after runtime! debian.vim
+" call pathogen#infect()
+" call pathogen#helptags()
 
-" Activate powerline
-" set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
 " Use powerline fonts with vim-airline
-" TODO : Error checking
+"  TODO : Error checking
 let g:airline_powerline_fonts=1
 " Airline themes i like:
 " - murmur
@@ -70,7 +84,7 @@ set background=dark     " If using a dark background within the
                     " editing area and syntax highlighting turn 
                     " on this option as well
 " highligh color for Vmode selection
-highlight Visual ctermfg='White' ctermbg='Yellow'
+highlight Visual ctermfg='White' ctermbg='DarkYellow'
 
 " completion menu colors
 highlight Pmenu ctermbg='DarkBlue' ctermfg='LightGreen'
@@ -100,7 +114,7 @@ set number              " Set line numbers
 set relativenumber      " Line numbering relative to current line
 
 set showcmd             " Show (partial) command in status line.
-set showmode            " Show current mode
+set noshowmode            " Show current mode
 
 set nobackup            " Make no *.bak
 set writebackup         " Keep backup while editing
