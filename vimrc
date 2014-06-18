@@ -18,23 +18,24 @@ filetype off
 set runtimepath+=~/.vim/bundle/vundle
 call vundle#rc()
 
-Bundle 'kien/ctrlp.vim.git'
-Bundle 'klen/python-mode.git'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'bling/vim-airline'
-" Bundle 'junegunn/vim-easy-align.git'
-" Bundle 'Lokaltog/vim-easymotion.git'
-" Bundle 'rstacruz/sparkup.git'
-" Bundle 'tpope/vim-surround.git'
-" Bundle 'bling/vim-bufferline'
+" Let Vundle manage itself
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'kien/ctrlp.vim.git'
+Plugin 'klen/python-mode.git'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'bling/vim-airline'
+" Plugin 'junegunn/vim-easy-align.git'
+" Plugin 'Lokaltog/vim-easymotion.git'
+" Plugin 'rstacruz/sparkup.git'
+" Plugin 'tpope/vim-surround.git'
+" Plugin 'bling/vim-bufferline'
+
+call vundle#end()
+filetype plugin indent on
 
 let mapleader=","
 let maplocalleader=","
-
-" " Load pathogen modules.
-" " Keep this at the top of the file, right after runtime! debian.vim
-" call pathogen#infect()
-" call pathogen#helptags()
 
 " Use powerline fonts with vim-airline
 "  TODO : Error checking
