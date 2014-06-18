@@ -55,7 +55,7 @@ def parse(url="", username="", pswd=""):
     return feedparser.parse(resp.content)
 
 def print_entries(feed, tmpl=DEFAULT_TMPL):
-    """ 
+    """
     Print out the passed feed, according to the template tmpl.
     tmpl should be a string containing new style (ie {}) format tags,
     names after fields available on a feedparser's feed entry
@@ -69,25 +69,25 @@ def print_entries(feed, tmpl=DEFAULT_TMPL):
         print("No entry")
     for i, e in enumerate(feed.entries):
         e.n = i
-        print(tmpl.format(e))     
+        print(tmpl.format(e))
 
 FEEDS_FILE = os.path.join(os.path.dirname(__file__), '.feeds')
 if not os.path.exists(FEEDS_FILE):
     f = open(FEEDS_FILE, 'w')
     f.write('{}')
     f.close()
-    
+
 with open(FEEDS_FILE, 'r') as f:
     FEEDS = json.load(f)
 
 
 def fetch_feed(args):
-    """ 
+    """
     Fetch the feed provided in args and displays it.
     Mapped to the "fetch" command when used as a standalone script.
     args should contain:
         - feed:     The name or url of the feed to be fetched.
-        - user:     a user name (will prompt for a password if present). 
+        - user:     a user name (will prompt for a password if present).
                     (optional)
     """
     url     = args.feed
@@ -132,14 +132,14 @@ def list_feeds(args):
     """
     print(json.dumps(get_feeds_list(),
                      sort_keys=True,
-                     indent=4, 
+                     indent=4,
                      separators=(',', ':')
           )
     )
     return 0
 
 def register_feed(args):
-    """ 
+    """
     Store a new feed to the json "db".
     Mapped to the "register" command when used as a standalone script.
     args should contain:
@@ -176,7 +176,7 @@ def update_feed(args):
     return register_feed(args)
 
 def del_feed(args):
-    """ 
+    """
     Delete a feed from the json "db".
     Mapped to the "remove" command when used as a standalone script.
     args should contain:
@@ -185,7 +185,7 @@ def del_feed(args):
     del(FEEDS[args.feed])
     write_feeds_list()
     return 0
-    
+
 if __name__ == '__main__':
 
     import argparse
@@ -216,10 +216,10 @@ if __name__ == '__main__':
     list_parser = subparsers.add_parser('list',
             help="List registered feeds.")
     list_parser.set_defaults(func=list_feeds)
-    
+
     reg_parser  = subparsers.add_parser('register',
             help="Register a new feed.")
-    reg_parser.add_argument('feedname', 
+    reg_parser.add_argument('feedname',
             help="Name of the feed to be registered. Will be used for all "
                  "future references to that particular feed.")
     reg_parser.add_argument('feedurl',
@@ -232,10 +232,10 @@ if __name__ == '__main__':
                  "See ,feedreadr fetch -h for more details on template strings."
     )
     reg_parser.set_defaults(func=register_feed)
-    
+
     up_parser  = subparsers.add_parser('update',
             help="Update an existing feed.")
-    up_parser.add_argument('feedname', 
+    up_parser.add_argument('feedname',
             help="Name of the feed to update.")
     up_parser.add_argument('-r', '--feedurl', action='store',
             help="Feed url.")
