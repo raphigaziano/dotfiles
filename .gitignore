@@ -2,3 +2,5 @@
 *.netrwhist
 *~
 *.pyc
+
+vim/bundle/**
