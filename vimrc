@@ -16,7 +16,7 @@ set nocompatible
 
 filetype off
 set runtimepath+=~/.vim/bundle/vundle
-call vundle#rc()
+call vundle#begin()
 
 " Let Vundle manage itself
 Plugin 'gmarik/Vundle.vim'
