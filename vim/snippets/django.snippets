@@ -1,0 +1,15 @@
+# Django snippets
+
+# Model Field
+# TODO: capitalize and unslugify ${3}
+snippet mfield
+	${1} = models.${2}(_('${3}'), ${4})
+
+# TODO: Sameasabove, with 2
+snippet mchf
+	${1} = models.CharField(_('${2}'), ${3})
+
+snippet murlf
+	${1} = models.URLField(_('${2}'), ${3})
+
+# ...
