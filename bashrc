@@ -13,10 +13,14 @@ set -o vi
 # Custom prompt
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h \[\033[01;33m\]\w \n\[\033[01;34m\]\$\[\033[00m\] '
 
-# Activate powerline
-. $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+# Activate autojump
+. /usr/share/autojump/autojump.sh
+# Autojump config
+export AUTOJUMP_AUTOCOMPLETE_CMDS='v vim'
 
 ### ENV VARS ###
+
+export TERM=xterm-256color
 
 export EDITOR=vim
 export PATH=$PATH:~/bin:~/.local/bin
@@ -147,6 +151,12 @@ function _vim_filext {
     vim ${res[@]}
 }
 
+# Shortcut for creating a new python package
+function mkpypkg {
+    mkdir -p $1
+    touch "$1/__init__.py"
+}
+
 alias v="vim"
 alias vi="vim"
 alias vpy="_vim_filext 'py'"
@@ -178,4 +188,4 @@ alias killpyc='find . -name "*.pyc" -delete'
 
 ### Startup ###
 
-cow_fortune
+# cow_fortune
