@@ -1,7 +1,7 @@
 global !p
 def complete(t, opts):
 	"""
-	Autocompletion helper, straight from the tutorial screencast @
+	Autocompletion helper, slightly tweaked from the tutorial screencast @
 	https://www.youtube.com/watch?v=JJQYwt6Diro
 
 	"""
@@ -9,7 +9,7 @@ def complete(t, opts):
 		opts = [ m[len(t):] for m in opts if m.startswith(t) ]
 	if len(opts) == 1:
 		return opts[0]
-	return "(" + '|'.join(opts) + ")"
+	return "(" + '|'.join(opts) + ")" if opts else ''
 endglobal
 
 snippet test "Test snippet"
