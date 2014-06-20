@@ -1,0 +1,17 @@
+global !p
+def complete(t, opts):
+	"""
+	Autocompletion helper, straight from the tutorial screencast @
+	https://www.youtube.com/watch?v=JJQYwt6Diro
+
+	"""
+	if t:
+		opts = [ m[len(t):] for m in opts if m.startswith(t) ]
+	if len(opts) == 1:
+		return opts[0]
+	return "(" + '|'.join(opts) + ")"
+endglobal
+
+snippet test "Test snippet"
+foo is $1`!p snip.rv = complete(t[1], ['foo', 'bar', 'baz'])`
+endsnippet
