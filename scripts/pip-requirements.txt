@@ -1,5 +1,4 @@
 virtualenvwrapper
-Django
 ipython
 ipdb
 nose
