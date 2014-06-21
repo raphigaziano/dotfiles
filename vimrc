@@ -31,7 +31,6 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'Lokaltog/vim-easymotion.git'
 " Plugin 'rstacruz/sparkup.git'
 " Plugin 'tpope/vim-surround.git'
-" Plugin 'bling/vim-bufferline'
 
 call vundle#end()
 filetype plugin indent on
@@ -241,27 +240,6 @@ endif
 
 
 """ Plugin Options """
-
-" NERDTree "
-
-" Auto close explorer on opening a file
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeHighlightCursorline=1
-let g:NERDChristmasTree=1
-
-" mappings
-map <F2> :NERDTreeToggle<cr>
-map <F3> :TlistToggle<cr>
-
-" bufferline "
-let g:bufferline_rotate = 1
-let g:bufferline_fixed_index =  -1 "always last
-
-" Taglist "
-" Focus Tag window on opening
-let Tlist_GainFocus_On_ToggleOpen = 1
-" Tag window on the right
-let Tlist_Use_Right_Window = 1
 
 " ctrp "
 " bindings
