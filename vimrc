@@ -253,6 +253,17 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:pymode_lint_cwindow = 0
 " TODO: Select linters and disable some
 
+" Ultisnips "
+python << end
+def add_to_py_path(p):
+    import os, sys
+    path = os.path.expanduser(p)
+    if path not in sys.path:
+        sys.path.append(path)
+end
+:python add_to_py_path('~/.vim/pythonx')
+let g:UltiSnipsEditSplit = 'horizontal'
+
 """ FileTypes """
 
 """ Python
