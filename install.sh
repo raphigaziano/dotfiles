@@ -28,6 +28,10 @@ do
         # move old versions to backup dir
         if [ -e ~/.$filename ]
         then
+            if [ ! -d $DIR/backup ]
+            then
+                mkdir $DIR/backups
+            fi
             echo ${filename} moved to ${DIR}/backups/${filename}
             mv ~/.$filename $DIR/backups/
         fi
