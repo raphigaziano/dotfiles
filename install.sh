@@ -49,8 +49,8 @@ then
 fi
 
 # clone vundle (vim plugin manager)
-mkdir ~/.dotfiles/vim/bundle
-git clone https://github.com/gmarik/vundle.git ~/.dotfiles/vim/bundle/vundle
+mkdir $DIR/vim/bundle
+git clone https://github.com/gmarik/vundle.git $DIR/vim/bundle/vundle
 vim +PluginInstall +qall
 
 # source bashrc
