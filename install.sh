@@ -6,6 +6,7 @@ ignore=(
     bin
     backups
     install.sh
+    TODO.rst
 )
 
 cd $DIR
