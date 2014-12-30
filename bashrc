@@ -185,6 +185,8 @@ alias djlint="pylint --generated-members=objects,DoesNotExist"
 
 # Purge python .pyc files
 alias killpyc='find . -name "*.pyc" -delete'
+# Purge vim swap files
+alias killvim='find . -name "*.sw[op]" -delete'
 
 ### Startup ###
 
