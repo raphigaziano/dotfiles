@@ -183,6 +183,9 @@ alias serve="python -m SimpleHTTPServer"
 # Django-pylint
 alias djlint="pylint --generated-members=objects,DoesNotExist"
 
+# Grep python processes
+alias pyps='ps aux | grep python'
+
 # Purge python .pyc files
 alias killpyc='find . -name "*.pyc" -delete'
 # Purge vim swap files
