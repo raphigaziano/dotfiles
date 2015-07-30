@@ -189,6 +189,11 @@ inoremap jk <Esc>
 vnoremap < <gv
 vnoremap > >gv
 
+" Prettyfy json
+nnoremap <leader>ppj :%!python -m json.tool<cr>
+" Visual block version
+vnoremap <leader>ppj :!python -m json.tool<cr>
+
 " In Visual mode, map Enter key to the EasyAlign command
 vnoremap <silent> <Enter> :EasyAlign<cr>
 
