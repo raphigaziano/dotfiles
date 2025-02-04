@@ -11,13 +11,12 @@
 ##############################################################################
 
 packages=(
-    tmux
-    terminator
     tree
-    python-pip
-    exuberant-ctags
     curl
-    autojump
+    htop
+    btop
+    tmux
+    neovim
 )
 
 # Check if user is root

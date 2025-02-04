@@ -1,20 +1,19 @@
--1 Clone this repo in $HOME:
+-1 Clone this repo:
 
    ::
 
-       ~ $ git clone https://github.com/raphigaziano/.dotfiles.git
+       ~ $ git clone https://github.com/raphigaziano/dotfiles.git
 
--2 (Opt) Install packages:
+-2 (Opt) Install packages (need root permissions):
 
    ::
 
-      ~ $ .dotfiles/scripts/getpkgs.sh      # From package manager
-      ~ $ .dotfiles/scripts/pypkgs.sh       # Python packages
-      
+      ~ $ ./scripts/getpkgs.sh
+
 -3 Update config:
 
    ::
 
-      ~ $ .dotfiles/install.sh
+      ~ $ ./install.sh
 
 -4 profit!

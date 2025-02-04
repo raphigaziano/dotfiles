@@ -1,6 +1,0 @@
-virtualenvwrapper
-ipython
-ipdb
-nose
-pylint
-grin
