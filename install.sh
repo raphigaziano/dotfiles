@@ -7,6 +7,8 @@ echo "Install packages..."
 
 echo "Creating symlinks..."
 echo "  .bashrc..."
+# rename default bashrc. Symlinking will fail if the source file already exists.
+mv $HOME/.bashrc $HOME/.bashrc.bak
 ln -s $PWD/bash/bashrc $HOME/.bashrc
 echo "  .gitdonfig..."
 ln -s $PWD/git/gitconfig $HOME/.gitconfig
