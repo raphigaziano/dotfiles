@@ -18,6 +18,7 @@ packages=(
     btop
     tmux
     neovim
+    python3-venv
 )
 
 # Check if user is root
