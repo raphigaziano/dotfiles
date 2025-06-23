@@ -42,6 +42,9 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 -- Toggle between current & last buffer
 vim.keymap.set('n', "<leader>t", ":b#<cr>")
 
+-- Uppercase previous word in insert mode
+vim.keymap.set('i', "<C-u>", "<esc>mzgUiw`za")
+
 -- Bind Ctrl+movement to move between windows
 vim.keymap.set('n', "<C-j>", "<C-w>j")
 vim.keymap.set('n', "<C-k>", "<C-w>k")
